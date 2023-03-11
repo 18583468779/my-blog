@@ -1,19 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEventHandler, useEffect, useState } from "react";
+import { useState, useEffect, FormEventHandler } from "react";
 
-const SignUp: NextPage = () => {
+const SignIn: NextPage = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordConfirm: "",
   });
-  const [errors, setErrors] = useState({
-    username: [] as string[],
-    password: [] as string[],
-    passwordConfirm: [] as string[],
-  });
+  const [errors, setErrors] = useState({});
   useEffect(() => {
     // console.log(formData);
   }, [formData]);
@@ -21,12 +17,12 @@ const SignUp: NextPage = () => {
   const router = useRouter();
   const submitFormData: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    axios.post("/api/v1/users", formData).then(
+    axios.post("/api/v1/sessions", formData).then(
       (res) => {
         console.log(res);
         if (res.status == 200) {
-          window.alert("注册成功");
-          router.push("/posts/sign_in");
+          window.alert("登录成功");
+          // router.push("/");
         }
       },
       (error) => {
@@ -42,7 +38,7 @@ const SignUp: NextPage = () => {
 
   return (
     <div>
-      <h1>欢迎注册</h1>
+      <h1>欢迎登录</h1>
       <form onSubmit={submitFormData}>
         <div>
           <label>用户名:</label>
@@ -54,7 +50,6 @@ const SignUp: NextPage = () => {
               setFormData({ ...formData, username: e.target.value })
             }
           />
-          {errors.username.join(",")}
         </div>
         <div>
           <label>密码:</label>
@@ -66,26 +61,14 @@ const SignUp: NextPage = () => {
               setFormData({ ...formData, password: e.target.value })
             }
           />
-          {errors.password.join(",")}
         </div>
+
         <div>
-          <label>确认密码:</label>
-          <input
-            type="password"
-            placeholder="请再次输入密码"
-            name="passwordConfirm"
-            onChange={(e) =>
-              setFormData({ ...formData, passwordConfirm: e.target.value })
-            }
-          />
-          {errors.passwordConfirm.join(",")}
-        </div>
-        <div>
-          <button type="submit">注册</button>
+          <button type="submit">登录</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;
