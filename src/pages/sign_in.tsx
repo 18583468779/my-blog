@@ -1,9 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEventHandler, useEffect, useState } from "react";
+import { useState, useEffect, FormEventHandler } from "react";
+import { withSessionSsr } from "../../lib/withSession";
 
-const SignUp: NextPage = () => {
+const SignIn: NextPage = (props) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -12,21 +13,28 @@ const SignUp: NextPage = () => {
   const [errors, setErrors] = useState({
     username: [] as string[],
     password: [] as string[],
-    passwordConfirm: [] as string[],
   });
+  const [confirmLogin, setConfirmLogin] = useState(false);
   useEffect(() => {
-    // console.log(formData);
-  }, [formData]);
+    //@ts-ignore
+    //使用cookie判断是否已经登录
+    const sessions = props.user.user?.currentUser;
+    if (sessions) {
+      setConfirmLogin(true);
+      console.log(props);
+      // router.push("/");
+    }
+  }, []);
 
   const router = useRouter();
   const submitFormData: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    axios.post("/api/v1/users", formData).then(
+    axios.post("/api/v1/sessions", formData).then(
       (res) => {
         console.log(res);
         if (res.status == 200) {
-          window.alert("注册成功");
-          router.push("/posts/sign_in");
+          window.alert("登录成功");
+          router.push("/");
         }
       },
       (error) => {
@@ -42,7 +50,11 @@ const SignUp: NextPage = () => {
 
   return (
     <div>
-      <h1>欢迎注册</h1>
+      {confirmLogin && ( //@ts-ignore
+        <div>用户已登录:{props.user.user?.username}</div>
+      )}
+
+      <h1>欢迎登录</h1>
       <form onSubmit={submitFormData}>
         <div>
           <label>用户名:</label>
@@ -68,24 +80,24 @@ const SignUp: NextPage = () => {
           />
           {errors.password.join(",")}
         </div>
+
         <div>
-          <label>确认密码:</label>
-          <input
-            type="password"
-            placeholder="请再次输入密码"
-            name="passwordConfirm"
-            onChange={(e) =>
-              setFormData({ ...formData, passwordConfirm: e.target.value })
-            }
-          />
-          {errors.passwordConfirm.join(",")}
-        </div>
-        <div>
-          <button type="submit">注册</button>
+          <button type="submit">登录</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;
+
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session;
+    return {
+      props: {
+        user: user,
+      },
+    };
+  }
+);

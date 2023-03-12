@@ -2,8 +2,9 @@ import { getDataSource } from "@/data-source";
 import { User } from "@/entities/User";
 import md5 from "md5";
 import { NextApiHandler } from "next";
+import { withSessionRoute } from "../../../../lib/withSession";
 
-const Users: NextApiHandler = async (req, res) => {
+const Sessions: NextApiHandler = async (req, res) => {
   const { username, password } = req.body;
   const errors = {
     username: [] as string[],
@@ -37,9 +38,16 @@ const Users: NextApiHandler = async (req, res) => {
   } else {
     user.username = username;
     user.password = md5(password);
+    //设置session
+    //@ts-ignore
+    req.session.user = {
+      currentUser: true,
+      username: username,
+    };
+    await req.session.save();
     res.statusCode = 200;
     res.write(JSON.stringify(user));
   }
   res.end();
 };
-export default Users;
+export default withSessionRoute(Sessions);
