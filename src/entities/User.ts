@@ -3,13 +3,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  EntityManager,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Post } from "./Post";
-import { AppDataSource } from "@/data-source";
 
 @Entity("users")
 export class User {
@@ -23,10 +21,8 @@ export class User {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
-  // @OneToMany(() => Post, (post) => post.user) //这个方式会报错error - ReferenceError: Cannot access 'User' before initialization
-  @OneToMany("Post", "user")
+  @OneToMany("Post", "author")
   posts: Post[];
-  // @OneToMany(() => Comment, (comment) => comment.user)
   @OneToMany("Comment", "user")
   comments: Comment[];
   password: string = "";

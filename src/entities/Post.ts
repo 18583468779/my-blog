@@ -9,7 +9,8 @@ import {
 } from "typeorm";
 import { User } from "./User";
 import { Comment } from "./Comment";
-@Entity("post")
+
+@Entity("posts")
 export class Post {
   @PrimaryGeneratedColumn("increment")
   id: number;
@@ -21,10 +22,8 @@ export class Post {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
-  // @ManyToOne(() => User, (user) => user.posts)
   @ManyToOne("User", "posts")
-  user: User;
-  // @OneToMany(() => Comment, (comment) => comment.post)
+  author: User;
   @OneToMany("Comment", "post")
   comments: Comment[];
 }

@@ -3,26 +3,25 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Post } from "./Post";
 import { User } from "./User";
+import { Post } from "./Post";
 
-@Entity("comment")
+@Entity("comments")
 export class Comment {
   @PrimaryGeneratedColumn("increment")
   id: number;
   @Column("text")
   content: string;
+  @ManyToOne("User", "comments")
+  user: User;
+  @ManyToOne("Post", "comments")
+  post: Post;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
-  // @ManyToOne((type) => User, (user) => user.comments)
-  @ManyToOne("User", "comments")
-  user: User;
-  // @ManyToOne((type) => Post, (post) => post.comments)
-  @ManyToOne("Post", "comments")
-  post: Post;
 }
