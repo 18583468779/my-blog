@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { useRouter } from "next/router";
 import { FormEventHandler, ReactElement, useCallback, useState } from "react";
 
 type Filed<T> = {
@@ -15,13 +16,13 @@ type useFormInitData<T> = {
   buttons: ReactElement;
   submit: {
     request: (formData: T) => Promise<AxiosResponse<T>>;
-    message: string;
+    message: () => void;
   };
 };
 
 export function useForm<T>(options: useFormInitData<T>) {
   const { initFormData, fields, buttons, submit } = options;
-
+  const router = useRouter();
   const [initData, setInitData] = useState(initFormData);
   const [errors, setErrors] = useState(() => {
     const e: { [k in keyof T]?: string[] } = {};
@@ -41,20 +42,21 @@ export function useForm<T>(options: useFormInitData<T>) {
   const _onSubmit: FormEventHandler<HTMLFormElement> = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(initData, "initFormData");
-      submit.request(initData).then(
-        () => {
-          window.alert(submit.message);
-        },
-        (error) => {
-          if (error.response) {
-            const response: AxiosResponse = error.response;
-            if (response.status === 422) {
-              setErrors(response.data);
-            }
+      submit.request(initData).then(submit.message, (error) => {
+        if (error.response) {
+          const response: AxiosResponse = error.response;
+          if (response.status === 422) {
+            setErrors(response.data);
+          } else if (response.status === 401) {
+            window.alert("请先登录");
+            router.push(
+              `/sign_in/?return_to=${encodeURIComponent(
+                window.location.pathname
+              )}`
+            );
           }
         }
-      );
+      });
     },
     [submit, initData]
   );

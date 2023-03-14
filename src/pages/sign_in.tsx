@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState, useEffect, FormEventHandler } from "react";
 import { withSessionSsr } from "../../lib/withSession";
+import queryString from "query-string";
 
 const SignIn: NextPage = (props) => {
   const [formData, setFormData] = useState({
@@ -15,13 +16,14 @@ const SignIn: NextPage = (props) => {
     password: [] as string[],
   });
   const [confirmLogin, setConfirmLogin] = useState(false);
+
   useEffect(() => {
     //@ts-ignore
     //使用cookie判断是否已经登录
     const sessions = props.user.user?.currentUser;
     if (sessions) {
       setConfirmLogin(true);
-      console.log(props);
+      // console.log(props);
       // router.push("/");
     }
   }, []);
@@ -34,7 +36,9 @@ const SignIn: NextPage = (props) => {
         console.log(res);
         if (res.status == 200) {
           window.alert("登录成功");
-          router.push("/");
+          // router.push("/");
+          const query = queryString.parse(window.location.search);
+          router.push(query.return_to.toString());
         }
       },
       (error) => {

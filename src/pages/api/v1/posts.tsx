@@ -11,7 +11,12 @@ const Posts: NextApiHandler = withSessionRoute(async (req, res) => {
     post.title = title;
     post.content = content;
     //@ts-ignore
-    const user = req.session.user.username;
+    const user = req.session.user?.username;
+    if (!user) {
+      res.statusCode = 401;
+      res.end();
+      return;
+    }
     const AppDataSource = await getDataSource();
     //根据session用户名查询用户
     const userRepository = AppDataSource.getRepository(User);
