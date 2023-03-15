@@ -6,7 +6,7 @@ import {
 } from "next";
 
 const sessionOptions = {
-  password: "6f705eab-1ea3-4053-86a7-46a185b6bf03",
+  password: process.env.SECRET,
   cookieName: "blog",
   // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
   cookieOptions: {
