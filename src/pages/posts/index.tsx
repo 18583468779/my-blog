@@ -39,7 +39,6 @@ export const getServerSideProps = withSessionSsr(
       return;
     }
     const AppDataSource = await getDataSource();
-
     const userRepository = AppDataSource.getRepository(User);
     const hasUser = await userRepository.findOneBy({
       username: username,
