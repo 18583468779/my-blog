@@ -21,7 +21,7 @@ const PostsIndex: NextPage<Props> = (props) => {
       <h1>文章列表</h1>
       {posts.map((p) => (
         <div key={p.id}>
-          <Link href={`/posts/${p.id}`}>{p.title ? p.title : "没有标题"}</Link>
+          <Link href={`/posts/${p.id}`}> {p.title ? p.title : "没有标题"}</Link>
         </div>
       ))}
       <footer>{pager}</footer>
@@ -49,7 +49,7 @@ export const getServerSideProps = withSessionSsr(
     const urlParams = new URL("https://example.com/" + req.url).searchParams;
     const query = urlParams.get("page"); //第几页
     const page = parseInt(query?.toString()) || 1;
-    // console.log(page, "product");
+
     const perPage = 1; //每页3个博客
     //根据用户id获取对应的博客，pagePostCount是一共的数据
     const [pagePost, pagePostCount] = await postRepository.findAndCount({
