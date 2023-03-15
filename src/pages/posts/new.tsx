@@ -31,7 +31,7 @@ const PostsNew: NextPage = () => {
     submit: {
       request: (formData) => axios.post("/api/v1/posts", formData),
       message: () => {
-        window.alert("提交成功");
+        window.alert("提交成功！！");
         router.push("/posts");
       },
     },
