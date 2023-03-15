@@ -3,7 +3,7 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-const postsNew: NextPage = () => {
+const PostsNew: NextPage = () => {
   const router = useRouter();
   const { form } = useForm({
     initFormData: { title: "", content: "" },
@@ -44,4 +44,4 @@ const postsNew: NextPage = () => {
   );
 };
 
-export default postsNew;
+export default PostsNew;
