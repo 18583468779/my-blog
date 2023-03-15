@@ -32,7 +32,13 @@ export const usePager = (options: Options) => {
     <div className="wrapper">
       {page !== 1 && <Link href={urlMaker(page - 1)}>上一页</Link>}
       {pageNumbers.map((n) =>
-        n === -1 ? <span>...</span> : <Link href={urlMaker(n)}>{n}</Link>
+        n === -1 ? (
+          <span>...</span>
+        ) : (
+          <Link href={urlMaker(n)} key={n}>
+            {n}
+          </Link>
+        )
       )}
 
       {page < totalPage && <Link href={urlMaker(page + 1)}>下一页</Link>}
