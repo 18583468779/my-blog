@@ -36,9 +36,13 @@ const SignIn: NextPage = (props) => {
         console.log(res);
         if (res.status == 200) {
           window.alert("登录成功");
-          // router.push("/");
+
           const query = queryString.parse(window.location.search);
-          router.push(query.return_to.toString());
+          if (query.return_to) {
+            router.push(query.return_to?.toString());
+          } else {
+            router.push("/posts");
+          }
         }
       },
       (error) => {

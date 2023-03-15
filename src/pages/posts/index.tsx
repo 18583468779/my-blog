@@ -1,18 +1,21 @@
-import { GetServerSideProps, NextPage } from "next";
-
+import { NextPage } from "next";
 import Link from "next/link";
 import { Post } from "@/entities/Post";
-import { getPosts } from "../../../lib/posts";
 import { getDataSource } from "@/data-source";
 import { withSessionSsr } from "../../../lib/withSession";
 import { User } from "@/entities/User";
+import _ from "lodash";
+import { usePager } from "@/hooks/userPager";
 
 type Props = {
   posts: Post[];
+  pager: number;
+  page: number;
+  totalPage: number;
 };
 const PostsIndex: NextPage<Props> = (props) => {
-  const { posts } = props;
-  console.log(posts);
+  const { posts, page, totalPage } = props;
+  const { pager } = usePager({ page, totalPage });
   return (
     <div>
       <h1>文章列表</h1>
@@ -21,6 +24,7 @@ const PostsIndex: NextPage<Props> = (props) => {
           <Link href={`/posts/${p.id}`}>{p.title ? p.title : "没有标题"}</Link>
         </div>
       ))}
+      <footer>{pager}</footer>
     </div>
   );
 };
@@ -41,13 +45,25 @@ export const getServerSideProps = withSessionSsr(
       username: username,
     });
     const postRepository = AppDataSource.getRepository(Post);
-    const posts = await postRepository.find({
+    //获取url:page
+    const urlParams = new URL("https://example.com/" + req.url).searchParams;
+    const query = urlParams.get("page"); //第几页
+    const page = parseInt(query.toString()) || 1;
+    // console.log(page, "product");
+    const perPage = 1; //每页3个博客
+    //根据用户id获取对应的博客，pagePostCount是一共的数据
+    const [pagePost, pagePostCount] = await postRepository.findAndCount({
       where: { authorId: hasUser.id },
+      skip: (page - 1) * perPage,
+      take: perPage,
     });
-    console.log("req", Object.keys(req), req.url);
+
     return {
       props: {
-        posts: JSON.parse(JSON.stringify(posts)),
+        posts: JSON.parse(JSON.stringify(pagePost)),
+        totalPage: Math.ceil(pagePostCount / perPage), //一共几页
+        page,
+        pagePostCount,
       },
     };
   }

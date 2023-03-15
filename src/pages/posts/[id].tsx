@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<
   //   });
 
   const id = await getPosts();
-  console.log(id, "id");
+  // console.log(id, "id");
   return {
     props: {
       post: JSON.parse(JSON.stringify("")),
