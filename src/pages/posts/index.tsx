@@ -48,7 +48,7 @@ export const getServerSideProps = withSessionSsr(
     //获取url:page
     const urlParams = new URL("https://example.com/" + req.url).searchParams;
     const query = urlParams.get("page"); //第几页
-    const page = parseInt(query.toString()) || 1;
+    const page = parseInt(query?.toString()) || 1;
     // console.log(page, "product");
     const perPage = 1; //每页3个博客
     //根据用户id获取对应的博客，pagePostCount是一共的数据
