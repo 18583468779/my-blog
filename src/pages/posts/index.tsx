@@ -16,7 +16,7 @@ type Props = {
 const PostsIndex: NextPage<Props> = (props) => {
   const { posts, page, totalPage } = props;
   const { pager } = usePager({ page, totalPage });
-  console.log(posts);
+  // console.log(posts);
   return (
     <div>
       <h1>文章列表</h1>

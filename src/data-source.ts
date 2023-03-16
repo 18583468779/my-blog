@@ -10,6 +10,7 @@ import { AddCreatedAtAndUpdatedAt1678364539773 } from "./migration/1678364539773
 import { RenameColumns1678370943331 } from "./migration/1678370943331-RenameColumns";
 import { AddUniqueUsernameToUsers1678371008013 } from "./migration/1678371008013-AddUniqueUsernameToUsers";
 
+// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
