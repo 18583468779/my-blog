@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useState, useEffect, FormEventHandler } from "react";
 import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
@@ -28,7 +27,6 @@ const SignIn: NextPage = (props) => {
     }
   }, []);
 
-  const router = useRouter();
   const submitFormData: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     axios.post("/api/v1/sessions", formData).then(
@@ -39,9 +37,9 @@ const SignIn: NextPage = (props) => {
 
           const query = queryString.parse(window.location.search);
           if (query.return_to) {
-            router.push(query.return_to?.toString());
+            window.location.href = query.return_to?.toString();
           } else {
-            router.push("/posts");
+            window.location.href = "/posts";
           }
         }
       },
