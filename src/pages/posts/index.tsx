@@ -16,15 +16,23 @@ type Props = {
 const PostsIndex: NextPage<Props> = (props) => {
   const { posts, page, totalPage } = props;
   const { pager } = usePager({ page, totalPage });
+  console.log(posts);
   return (
     <div>
       <h1>文章列表</h1>
-      {posts.map((p) => (
-        <div key={p.id}>
-          <Link href={`/posts/${p.id}`}> {p.title ? p.title : "没有标题"}</Link>
-        </div>
-      ))}
-      <footer>{pager}</footer>
+      {posts.length > 0 ? (
+        posts.map((p) => (
+          <div key={p.id}>
+            <Link href={`/posts/${p.id}`}>
+              {" "}
+              {p.title ? p.title : "没有标题"}
+            </Link>
+          </div>
+        ))
+      ) : (
+        <div>没有博客，请发布新博客</div>
+      )}
+      <footer>{posts.length > 0 ? pager : ""}</footer>
     </div>
   );
 };
@@ -35,9 +43,6 @@ export const getServerSideProps = withSessionSsr(
   async function getServerSideProps({ req }) {
     //@ts-ignore
     const username = req.session.user?.username; //根据session获取用户id
-    if (!username) {
-      return;
-    }
     const AppDataSource = await getDataSource();
     const userRepository = AppDataSource.getRepository(User);
     const hasUser = await userRepository.findOneBy({
