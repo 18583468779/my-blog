@@ -1,40 +1,30 @@
 import { NextPage } from "next";
-import styles from "@/styles/Layout.module.css";
-import Link from "next/link";
-const Layout: NextPage = () => {
-  return (
-    <header className={styles.header}>
-      <div className={["container", styles.container].join(" ")}>
-        <div>
-          <Link className={styles.logoWrap} href="/">
-            <img src={"/images/logo.svg"} alt="logo" width={"32px"} />
-            <b>xie的博客</b>
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <ul>
-            <li>
-              <Link href={"/search"}>搜索</Link>
-            </li>
+import Head from "next/head";
+import { ReactNode } from "react";
+import Header from "./Header";
 
-            <li>
-              <Link href={"/posts"}>博客广场</Link>
-            </li>
-            <li>
-              <Link href={"/posts/new"}>写博客</Link>
-            </li>
-            <li>
-              <Link href={"/connection"}>联系我</Link>
-            </li>
-            <li className={styles.users}>
-              <div>
-                <Link href={"/sign_in"}>登录</Link>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+type Props = {
+  children: ReactNode;
+};
+
+const Layout: NextPage<Props> = ({ children }) => {
+  return (
+    <>
+      <Head>
+        <title>谢的博客首页</title>
+        <meta name="description" content="blog app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <Header />
+      <main>{children}</main>
+    </>
   );
 };
 

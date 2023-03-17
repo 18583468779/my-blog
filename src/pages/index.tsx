@@ -1,32 +1,38 @@
-import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import { NextPage } from "next";
+import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import Layout from "@/component/layout";
-
 const Home: NextPage = () => {
   return (
-    <>
-      <Head>
-        <title>谢的博客首页</title>
-        <meta name="description" content="blog app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <Layout />
-      <main className={styles.main}>
-        <h1>欢迎来到xie的个人博客</h1>
-        <p>
-          <Link href={"/posts"}>文章列表</Link>
-        </p>
-      </main>
-    </>
+    <div className={styles.home}>
+      <div className="container">
+        <div className={styles.banner}>
+          <div className={styles.bannerLeft}>
+            <h1>欢迎来到xie的个人博客</h1>
+            <div>
+              <p>
+                创建一个博客。与世界分享你的故事。
+                <br /> 凭借专业设计的博客网站脱颖而出，可以根据您的故事进行定制
+              </p>
+              <div className={styles.posts}>
+                <Link href={"/posts"}>
+                  前往文章列表 <span>{">>"}</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className={styles.bannerRight}>
+            <p>123</p>
+            <p>ewrfew </p>
+            <p>阿萨德</p>
+            <p>阿斯顿撒</p>
+            <p>阿萨德</p>
+            <p>阿萨德</p>
+            <p>sad</p>
+            <p>阿萨德</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
