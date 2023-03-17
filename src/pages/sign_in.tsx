@@ -4,7 +4,14 @@ import { useState, useEffect, FormEventHandler } from "react";
 import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
 
-const SignIn: NextPage = (props) => {
+type Props = {
+  user: {
+    user: {
+      currentUser: object;
+    };
+  };
+};
+const SignIn: NextPage<Props> = (props) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -17,7 +24,6 @@ const SignIn: NextPage = (props) => {
   const [confirmLogin, setConfirmLogin] = useState(false);
 
   useEffect(() => {
-    //@ts-ignore
     //使用cookie判断是否已经登录
     const sessions = props.user.user?.currentUser;
     if (sessions) {
