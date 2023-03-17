@@ -17,7 +17,7 @@ export const usePager = (options: Options) => {
     numbers.push(i);
   }
   numbers.push(totalPage);
-  console.log("_question");
+  // console.log("_question");
   const pageNumbers = _.uniq(numbers)
     .sort()
     .filter((n) => n >= 1 && n <= totalPage)
