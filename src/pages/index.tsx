@@ -25,10 +25,6 @@ const Home: NextPage = () => {
             <p>ewrfew </p>
             <p>阿萨德</p>
             <p>阿斯顿撒</p>
-            <p>阿萨德</p>
-            <p>阿萨德</p>
-            <p>sad</p>
-            <p>阿萨德</p>
           </div>
         </div>
       </div>
