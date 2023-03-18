@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, TableColumn } from "typeorm";
 
-export class AddCreatedAtAndUpdatedAt1678364539773
+export class AddCreatedAtAndUpdatedAt1679125655342
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -8,7 +8,7 @@ export class AddCreatedAtAndUpdatedAt1678364539773
       new TableColumn({
         name: "createdAt",
         type: "timestamp",
-        isNullable: false,
+        isNullable: false, //不能为空
         default: "now()",
       }),
       new TableColumn({

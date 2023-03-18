@@ -17,6 +17,10 @@ export class User {
   username: string;
   @Column("varchar")
   passwordDigest: string;
+  @Column("varchar")
+  picture: string;
+  @Column("varchar")
+  email: string;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()

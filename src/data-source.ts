@@ -3,12 +3,13 @@ import { DataSource } from "typeorm";
 import { Post } from "./entities/Post";
 import { User } from "./entities/User";
 import { Comment } from "./entities/Comment";
-import { CreateUsers1678360308008 } from "./migration/1678360308008-CreateUsers";
 import { CreatePosts1678364313408 } from "./migration/1678364313408-CreatePosts";
 import { CreateComments1678364461161 } from "./migration/1678364461161-CreateComments";
-import { AddCreatedAtAndUpdatedAt1678364539773 } from "./migration/1678364539773-AddCreatedAtAndUpdatedAt";
-import { RenameColumns1678370943331 } from "./migration/1678370943331-RenameColumns";
+import { AddCreatedAtAndUpdatedAt1679125655342 } from "./migration/1679125655342-AddCreatedAtAndUpdatedAt";
+import { RenameColumns1679125655342 } from "./migration/1678370943331-RenameColumns";
 import { AddUniqueUsernameToUsers1678371008013 } from "./migration/1678371008013-AddUniqueUsernameToUsers";
+import { AddMoreUserInfo1679122540574 } from "./migration/1679122540574-AddMoreUserInfo";
+import { CreateUsers1679125652989 } from "./migration/1679125652989-CreateUsers";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -24,12 +25,13 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [User, Post, Comment],
   migrations: [
-    CreateUsers1678360308008,
+    CreateUsers1679125652989,
     CreatePosts1678364313408,
     CreateComments1678364461161,
-    AddCreatedAtAndUpdatedAt1678364539773,
-    RenameColumns1678370943331,
+    AddCreatedAtAndUpdatedAt1679125655342,
+    RenameColumns1679125655342,
     AddUniqueUsernameToUsers1678371008013,
+    AddMoreUserInfo1679122540574,
   ],
   subscribers: ["src/subscriber/**/*{.ts,.js}"],
 });
