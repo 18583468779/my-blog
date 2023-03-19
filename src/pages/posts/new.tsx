@@ -1,8 +1,10 @@
 import { useForm } from "@/hooks/useForm";
 import axios from "axios";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 const PostsNew: NextPage = () => {
+  const router = useRouter();
   const { form } = useForm({
     initFormData: { title: "", content: "" },
     fields: [
@@ -30,7 +32,8 @@ const PostsNew: NextPage = () => {
       request: (formData) => axios.post("/api/v1/posts", formData),
       message: () => {
         window.alert("提交成功！！");
-        window.location.href = "/posts";
+        // window.location.href = "/posts";
+        router.push("/posts");
       },
     },
   });

@@ -3,11 +3,14 @@ import { NextPage } from "next";
 import { useState, useEffect, FormEventHandler } from "react";
 import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
-
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/router";
+import { getCurrentUser } from "@/redux/features/userSlice";
 type Props = {
   user: {
     user: {
-      currentUser: object;
+      currentUser: boolean;
+      username: string;
     };
   };
 };
@@ -22,7 +25,8 @@ const SignIn: NextPage<Props> = (props) => {
     password: [] as string[],
   });
   const [confirmLogin, setConfirmLogin] = useState(false);
-
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     //使用cookie判断是否已经登录
     const sessions = props.user.user?.currentUser;
@@ -40,13 +44,17 @@ const SignIn: NextPage<Props> = (props) => {
         console.log(res);
         if (res.status == 200) {
           window.alert("登录成功");
-
           const query = queryString.parse(window.location.search);
           if (query.return_to) {
-            window.location.href = query.return_to?.toString();
+            // window.location.href = query.return_to?.toString();
+            router.push(query.return_to?.toString());
           } else {
-            window.location.href = "/posts";
+            // window.location.href = "/";
+            router.push("/");
           }
+          //将登录信息给store
+          // const state = props.user.user;
+          // dispatch(getCurrentUser(state));
         }
       },
       (error) => {

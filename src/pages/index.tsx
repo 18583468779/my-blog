@@ -1,7 +1,10 @@
+import React from "react";
 import { NextPage } from "next";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-const Home: NextPage = () => {
+import { withSessionSsr } from "../../lib/withSession";
+
+const Home: NextPage = (props) => {
   return (
     <div className={styles.home}>
       <div className="container">
@@ -25,6 +28,7 @@ const Home: NextPage = () => {
             <p>ewrfew </p>
             <p>阿萨德</p>
             <p>阿斯顿撒</p>
+            <button>获取登录信息</button>
           </div>
         </div>
       </div>
@@ -33,3 +37,14 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session;
+    return {
+      props: {
+        user: user,
+      },
+    };
+  }
+);

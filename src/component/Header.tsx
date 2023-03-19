@@ -1,7 +1,13 @@
 import { NextPage } from "next";
 import styles from "@/styles/Header.module.css";
 import Link from "next/link";
-const Header: NextPage = () => {
+import { useEffect } from "react";
+import { useAppSelector } from "@/redux/hooks";
+
+const Header: NextPage = (props) => {
+  const users = useAppSelector((state) => state.currentUser);
+  console.log(users);
+
   return (
     <header className={styles.header}>
       <div className={["container", styles.container].join(" ")}>
@@ -16,7 +22,6 @@ const Header: NextPage = () => {
             <li>
               <Link href={"/search"}>搜索</Link>
             </li>
-
             <li>
               <Link href={"/posts"}>博客广场</Link>
             </li>
@@ -26,11 +31,18 @@ const Header: NextPage = () => {
             <li>
               <Link href={"/connection"}>联系我</Link>
             </li>
-            <li className={styles.users}>
-              <div>
-                <Link href={"/sign_in"}>登录</Link>
-              </div>
-            </li>
+
+            {users.currentUser ? (
+              <li>
+                <h3>用户：{users.username}</h3>
+              </li>
+            ) : (
+              <li className={styles.users}>
+                <div>
+                  <Link href={"/sign_in"}>登录</Link>
+                </div>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

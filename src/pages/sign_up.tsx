@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { FormEventHandler, useEffect, useState } from "react";
 
 const SignUp: NextPage = () => {
@@ -13,6 +14,7 @@ const SignUp: NextPage = () => {
     password: [] as string[],
     passwordConfirm: [] as string[],
   });
+  const router = useRouter();
   useEffect(() => {
     // console.log(formData);
   }, [formData]);
@@ -23,7 +25,8 @@ const SignUp: NextPage = () => {
         console.log(res);
         if (res.status == 200) {
           window.alert("注册成功");
-          window.location.href = "/sign_in";
+          // window.location.href = "/sign_in";
+          router.push("/sign_in");
         }
       },
       (error) => {

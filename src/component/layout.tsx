@@ -1,6 +1,9 @@
+import { getUserSure } from "@/redux/features/userSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import axios from "axios";
 import { NextPage } from "next";
 import Head from "next/head";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Header from "./Header";
 
 type Props = {
@@ -8,6 +11,17 @@ type Props = {
 };
 
 const Layout: NextPage<Props> = ({ children }) => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    axios.post("/api/v1/userSure", { page: "index" }).then((res) => {
+      // console.log(res, "index");
+      if ((res.status = 200)) {
+        //发送请求判断用户是否登录
+        dispatch(getUserSure(res.data.user));
+      }
+    });
+  }, []);
+
   return (
     <>
       <Head>
