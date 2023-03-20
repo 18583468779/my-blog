@@ -13,7 +13,7 @@ const postsShow: NextPage<Props> = (props) => {
     <>
       <style jsx>{`
         .container {
-          padding-top: 100px;
+          padding-top: 120px;
         }
       `}</style>
       <div className="container">
