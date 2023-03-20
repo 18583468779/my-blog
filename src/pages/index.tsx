@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import { withSessionSsr } from "../../lib/withSession";
 import { useSwiper } from "@/hooks/useSwiper";
 
 const Home: NextPage = (props) => {
@@ -34,14 +33,3 @@ const Home: NextPage = (props) => {
 };
 
 export default Home;
-
-export const getServerSideProps = withSessionSsr(
-  async function getServerSideProps({ req }) {
-    const user = req.session;
-    return {
-      props: {
-        user: user,
-      },
-    };
-  }
-);

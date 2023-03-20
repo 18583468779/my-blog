@@ -1,0 +1,75 @@
+
+.Posts{
+    padding-top: 100px;
+    height: 100vh;
+    box-sizing: border-box;
+    background: rgba(250, 230, 249, 0.35);
+    h1{
+        font-size: 24px;
+        text-align: center;
+    }
+    h2{
+        font-size: 20px;
+        text-align: center;
+    }
+}
+.postList{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    div.link{
+        margin-bottom: 20px;
+    }
+    .fonts{
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+
+        span{
+            font-size: 12px;
+        }
+    }
+}
+.notBlog{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    .posts{
+        display: block;
+        background: rgb(187,187,187);
+        padding: 12px 12px;
+        width: 160px;
+        text-align: center;
+        margin-top: 20px;
+        border-radius: 5px;
+        transition: all .3s ease;
+        span{
+            animation: aniArrow 1s ease infinite;
+            display: inline-block;
+            transform: translateX(-5px);
+            margin-left: 5px;
+        }
+        &:hover{
+            background: #40474F;
+            color: white;
+        }
+    }
+}
+.footer{
+    margin-top: 20px;
+}
+@keyframes aniArrow {
+    0%{
+      transform: translateX(-5px);
+    }
+    50%{
+        transform: translateX(0px);
+    }
+    100%{
+        transform: translateX(-5px);
+    }
+}

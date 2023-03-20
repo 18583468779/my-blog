@@ -10,10 +10,17 @@ type Props = {
 const postsShow: NextPage<Props> = (props) => {
   const { post } = props;
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <article dangerouslySetInnerHTML={{ __html: post.content }}></article>
-    </div>
+    <>
+      <style jsx>{`
+        .container {
+          padding-top: 100px;
+        }
+      `}</style>
+      <div className="container">
+        <h1>{post.title}</h1>
+        <article dangerouslySetInnerHTML={{ __html: post.content }}></article>
+      </div>
+    </>
   );
 };
 
@@ -23,17 +30,14 @@ export const getServerSideProps: GetServerSideProps<
   any,
   { id: string }
 > = async (context) => {
-  //   const AppDataSource = await getDataSource();
-  //   const postRepository = AppDataSource.getRepository(Post);
-  //   const post = await postRepository.findOneBy({
-  //     id: parseInt(context.params.id),
-  //   });
-
-  const id = await getPosts();
-  // console.log(id, "id");
+  const AppDataSource = await getDataSource();
+  const postRepository = AppDataSource.getRepository(Post);
+  const post = await postRepository.findOneBy({
+    id: parseInt(context.params.id),
+  });
   return {
     props: {
-      post: JSON.parse(JSON.stringify("")),
+      post: JSON.parse(JSON.stringify(post)),
     },
   };
 };

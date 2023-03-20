@@ -1,0 +1,73 @@
+.Posts {
+  padding-top: 100px;
+  height: 100vh;
+  box-sizing: border-box;
+  background: rgba(250, 230, 249, 0.35);
+}
+.Posts h1 {
+  font-size: 24px;
+  text-align: center;
+}
+.Posts h2 {
+  font-size: 20px;
+  text-align: center;
+}
+.postList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+.postList div.link {
+  margin-bottom: 20px;
+}
+.postList .fonts {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.postList .fonts span {
+  font-size: 12px;
+}
+.notBlog {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+.notBlog .posts {
+  display: block;
+  background: #bbbbbb;
+  padding: 12px 12px;
+  width: 160px;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.notBlog .posts span {
+  animation: aniArrow 1s ease infinite;
+  display: inline-block;
+  transform: translateX(-5px);
+  margin-left: 5px;
+}
+.notBlog .posts:hover {
+  background: #40474F;
+  color: white;
+}
+.footer {
+  margin-top: 20px;
+}
+@keyframes aniArrow {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}

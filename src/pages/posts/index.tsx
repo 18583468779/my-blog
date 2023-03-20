@@ -6,33 +6,55 @@ import { withSessionSsr } from "../../../lib/withSession";
 import { User } from "@/entities/User";
 import _ from "lodash";
 import { usePager } from "@/hooks/userPager";
+import styles from "@/styles/Posts.module.css";
+import Head from "next/head";
 
 type Props = {
   posts: Post[];
   pager: number;
   page: number;
   totalPage: number;
+  username: string;
 };
 const PostsIndex: NextPage<Props> = (props) => {
-  const { posts, page, totalPage } = props;
+  const { posts, page, totalPage, username } = props;
   const { pager } = usePager({ page, totalPage });
   // console.log(posts);
   return (
-    <div>
-      <h1>文章列表</h1>
-      {posts.length > 0 ? (
-        posts.map((p) => (
-          <div key={p.id}>
-            <Link href={`/posts/${p.id}`}>
-              {" "}
-              {p.title ? p.title : "没有标题"}
-            </Link>
-          </div>
-        ))
-      ) : (
-        <div>没有博客，请发布新博客</div>
-      )}
-      <footer>{posts.length > 0 ? pager : ""}</footer>
+    <div className={styles.Posts}>
+      <Head>
+        <title>博客文章广场</title>
+      </Head>
+      <div className={"container"}>
+        <h1>博客文章广场</h1>
+        <h2>文章列表</h2>
+        <div className={styles.postList}>
+          {posts.length > 0 ? (
+            posts.map((p) => (
+              <div key={p.id} className={styles.link}>
+                <Link href={`/posts/${p.id}`}>
+                  <div>
+                    <p className={styles.fonts}>
+                      {p.title ? p.title : "没有标题"} ---------{" "}
+                      <span>(作者: {username})</span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            ))
+          ) : (
+            <div className={styles.notBlog}>
+              <div>没有博客，请发布新博客</div>
+              <Link href={"/posts/new"} className={styles.posts}>
+                发表博客 <span>{">>"}</span>
+              </Link>
+            </div>
+          )}
+          <footer className={styles.footer}>
+            {posts.length > 0 ? pager : ""}
+          </footer>
+        </div>
+      </div>
     </div>
   );
 };
@@ -68,6 +90,7 @@ export const getServerSideProps = withSessionSsr(
         totalPage: Math.ceil(pagePostCount / perPage), //一共几页
         page,
         pagePostCount,
+        username,
       },
     };
   }

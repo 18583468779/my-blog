@@ -25,3 +25,21 @@ body{
     margin: 0 auto;
 }
 
+a.active {
+    color: rgb(108,132,156);
+    font-weight: 700;
+    position: relative;
+  }
+
+a.active::after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: -2px;
+    width: 8px;
+    left: 0px;
+    height: 2px;
+    background: rgb(108,132,156);
+
+}   
+
