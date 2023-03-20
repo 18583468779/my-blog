@@ -6,8 +6,6 @@ import { useAppSelector } from "@/redux/hooks";
 
 const Header: NextPage = (props) => {
   const users = useAppSelector((state) => state.currentUser);
-  console.log(users);
-
   return (
     <header className={styles.header}>
       <div className={["container", styles.container].join(" ")}>

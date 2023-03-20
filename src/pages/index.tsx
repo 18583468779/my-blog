@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { withSessionSsr } from "../../lib/withSession";
+import { useSwiper } from "@/hooks/useSwiper";
 
 const Home: NextPage = (props) => {
+  const { Swiper } = useSwiper(3);
+
   return (
     <div className={styles.home}>
       <div className="container">
@@ -23,13 +26,7 @@ const Home: NextPage = (props) => {
               </div>
             </div>
           </div>
-          <div className={styles.bannerRight}>
-            <p>123</p>
-            <p>ewrfew </p>
-            <p>阿萨德</p>
-            <p>阿斯顿撒</p>
-            <button>获取登录信息</button>
-          </div>
+          {Swiper}
         </div>
       </div>
     </div>
