@@ -1,9 +1,13 @@
 import { useForm } from "@/hooks/useForm";
+import { useAppSelector } from "@/redux/hooks";
 import axios from "axios";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "@/styles/NewPost.module.css";
 
 const PostsNew: NextPage = () => {
+  const user = useAppSelector((state) => state.currentUser);
   const router = useRouter();
   const { form } = useForm({
     initFormData: { title: "", content: "" },
@@ -38,10 +42,42 @@ const PostsNew: NextPage = () => {
     },
   });
   return (
-    <div>
-      <h1>请发布一篇博客</h1>
-      {form}
-    </div>
+    <>
+      {user.currentUser ? (
+        <div className={styles.posts}>
+          <div className={["container", styles.postWrap].join(" ")}>
+            <h1>请发布一篇博客</h1>
+            {form}
+          </div>
+        </div>
+      ) : (
+        <div className="container">
+          <style jsx>
+            {`
+              .noLogin {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                flex-direction: column;
+              }
+              h2 {
+                text-align: center;
+                font-size: 28px;
+              }
+            `}
+          </style>
+          <div className="noLogin">
+            <h2>您还没有进行登录</h2>
+            <div className={"btn"}>
+              <Link href={"/sign_in"}>
+                前往登录页面 <span>{">>"}</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

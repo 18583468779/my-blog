@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { FormEventHandler, ReactElement, useCallback, useState } from "react";
-
+import styles from "@/styles/UseForm.module.css";
 type Filed<T> = {
   label: string;
   placeholder: string;
@@ -59,35 +59,37 @@ export function useForm<T>(options: useFormInitData<T>) {
   );
 
   const form = (
-    <form onSubmit={_onSubmit}>
-      {fields.map((item) => (
-        <div key={item.label}>
-          <label>{item.label}</label>
-          {item.type === "textarea" ? (
-            <textarea
-              name={item.name}
-              placeholder={item.placeholder}
-              onChange={(e) => {
-                onChange(item.key, e.target.value);
-              }}
-            ></textarea>
-          ) : (
-            <input
-              type={item.type}
-              placeholder={item.placeholder}
-              name={item.name}
-              onChange={(e) => {
-                onChange(item.key, e.target.value);
-              }}
-            />
-          )}
-          {errors[item.key]?.length > 0 && (
-            <div>{errors[item.key].join(",")}</div>
-          )}
-        </div>
-      ))}
-      {buttons}
-    </form>
+    <div className={styles.useForm}>
+      <form onSubmit={_onSubmit}>
+        {fields.map((item) => (
+          <div key={item.label}>
+            <label>{item.label}</label>
+            {item.type === "textarea" ? (
+              <textarea
+                name={item.name}
+                placeholder={item.placeholder}
+                onChange={(e) => {
+                  onChange(item.key, e.target.value);
+                }}
+              ></textarea>
+            ) : (
+              <input
+                type={item.type}
+                placeholder={item.placeholder}
+                name={item.name}
+                onChange={(e) => {
+                  onChange(item.key, e.target.value);
+                }}
+              />
+            )}
+            {errors[item.key]?.length > 0 && (
+              <div>{errors[item.key].join(",")}</div>
+            )}
+          </div>
+        ))}
+        {buttons}
+      </form>
+    </div>
   );
   return {
     form,

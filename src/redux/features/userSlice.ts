@@ -19,6 +19,7 @@ export const userSlice = createSlice({
       // state.username = action.payload.username;
     },
     getUserSure: (state, action) => {
+      // console.log(action, "action");
       state.currentUser = action.payload.currentUser;
       state.username = action.payload.username;
     },

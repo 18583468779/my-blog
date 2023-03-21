@@ -67,10 +67,13 @@ export const getServerSideProps = withSessionSsr(
     const username = req.session.user?.username; //根据session获取用户id
     const AppDataSource = await getDataSource();
     const userRepository = AppDataSource.getRepository(User);
-    const hasUser = await userRepository.findOneBy({
-      username: username,
-    });
+    // const hasUser = await userRepository.findOneBy({
+    //   username: username,
+    // });
     const postRepository = AppDataSource.getRepository(Post);
+    // const allPosts = postRepository.find();
+    // const hasUser = await userRepository.find({});
+    // // console.log(allPosts, "allposts");
     //获取url:page
     const urlParams = new URL("https://example.com/" + req.url).searchParams;
     const query = urlParams.get("page"); //第几页
@@ -79,7 +82,7 @@ export const getServerSideProps = withSessionSsr(
     const perPage = 10;
     //根据用户id获取对应的博客，pagePostCount是一共的数据
     const [pagePost, pagePostCount] = await postRepository.findAndCount({
-      where: { authorId: hasUser.id },
+      // where: { authorId: hasUser.id },
       skip: (page - 1) * perPage,
       take: perPage,
     });
@@ -90,7 +93,7 @@ export const getServerSideProps = withSessionSsr(
         totalPage: Math.ceil(pagePostCount / perPage), //一共几页
         page,
         pagePostCount,
-        username,
+        username: username || null,
       },
     };
   }

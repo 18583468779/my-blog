@@ -5,7 +5,7 @@ import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/router";
-import { getCurrentUser } from "@/redux/features/userSlice";
+import { getCurrentUser, getUserSure } from "@/redux/features/userSlice";
 type Props = {
   user: {
     user: {
@@ -46,15 +46,15 @@ const SignIn: NextPage<Props> = (props) => {
           window.alert("登录成功");
           const query = queryString.parse(window.location.search);
           if (query.return_to) {
-            // window.location.href = query.return_to?.toString();
-            router.push(query.return_to?.toString());
+            window.location.href = query.return_to?.toString();
+            // router.push(query.return_to?.toString());
           } else {
-            // window.location.href = "/";
-            router.push("/");
+            window.location.href = "/";
+            // router.push("/");
           }
           //将登录信息给store
-          // const state = props.user.user;
-          // dispatch(getCurrentUser(state));
+          const state = props.user;
+          dispatch(getUserSure(state));
         }
       },
       (error) => {
