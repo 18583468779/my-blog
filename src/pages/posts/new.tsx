@@ -14,21 +14,21 @@ const PostsNew: NextPage = () => {
     fields: [
       {
         label: "标题",
-        placeholder: "请输入标题",
+        placeholder: "请输入标题*",
         name: "postname",
         type: "text",
         key: "title",
       },
       {
         label: "内容",
-        placeholder: "请输入内容",
+        placeholder: "请输入内容*",
         name: "content",
         type: "textarea",
         key: "content",
       },
     ],
     buttons: (
-      <div>
+      <div className="btns">
         <button type="submit">提交</button>
       </div>
     ),
@@ -46,6 +46,12 @@ const PostsNew: NextPage = () => {
       {user.currentUser ? (
         <div className={styles.posts}>
           <div className={["container", styles.postWrap].join(" ")}>
+            <img
+              src="/images/blog-logo.png"
+              alt="blog-title"
+              width={64}
+              className={styles.blogLogo}
+            />
             <h1>请发布一篇博客</h1>
             {form}
           </div>

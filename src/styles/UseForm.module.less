@@ -4,4 +4,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    form{
+        &>div{
+            position: relative;
+            margin: 24px auto 0;
+            display: block;
+            width: 420px;
+            // height: 60px;
+            input,textarea{
+                padding-left: 66px;
+            }
+            textarea{
+                padding-top: 10px;
+                min-height: 300px;
+            }
+            label{
+                position: absolute;
+                top: 0;
+                left: 24px;
+                z-index: 1;
+                display: block;
+                width: 20px;
+                height: 60px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: 50%;
+                content: "";
+            }
+            .title{
+                background-image: url(../../public/images/title.svg);
+                
+            }
+            .textTitle{
+                height: 20px;
+                top: 10px;
+                background-image: url(../../public/images/content.svg);
+            }
+        }
+        .inputWrap{
+            height: 60px;
+        }
+        .textareaWrap{
+            min-height: 300px;
+        }
+    }
 }
+

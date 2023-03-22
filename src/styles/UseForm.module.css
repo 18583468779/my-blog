@@ -5,3 +5,44 @@
   align-items: center;
   justify-content: center;
 }
+.useForm form > div {
+  position: relative;
+  margin: 24px auto 0;
+  display: block;
+  width: 420px;
+}
+.useForm form > div input,
+.useForm form > div textarea {
+  padding-left: 66px;
+}
+.useForm form > div textarea {
+  padding-top: 10px;
+  min-height: 300px;
+}
+.useForm form > div label {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  z-index: 1;
+  display: block;
+  width: 20px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  content: "";
+}
+.useForm form > div .title {
+  background-image: url(../../public/images/title.svg);
+}
+.useForm form > div .textTitle {
+  height: 20px;
+  top: 10px;
+  background-image: url(../../public/images/content.svg);
+}
+.useForm form .inputWrap {
+  height: 60px;
+}
+.useForm form .textareaWrap {
+  min-height: 300px;
+}

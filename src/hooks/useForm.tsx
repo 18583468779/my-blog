@@ -63,27 +63,32 @@ export function useForm<T>(options: useFormInitData<T>) {
       <form onSubmit={_onSubmit}>
         {fields.map((item) => (
           <div key={item.label}>
-            <label>{item.label}</label>
             {item.type === "textarea" ? (
-              <textarea
-                name={item.name}
-                placeholder={item.placeholder}
-                onChange={(e) => {
-                  onChange(item.key, e.target.value);
-                }}
-              ></textarea>
+              <div className={styles.textareaWrap}>
+                <label className={styles.textTitle}></label>
+                <textarea
+                  name={item.name}
+                  placeholder={item.placeholder}
+                  onChange={(e) => {
+                    onChange(item.key, e.target.value);
+                  }}
+                ></textarea>
+              </div>
             ) : (
-              <input
-                type={item.type}
-                placeholder={item.placeholder}
-                name={item.name}
-                onChange={(e) => {
-                  onChange(item.key, e.target.value);
-                }}
-              />
+              <div className={styles.inputWrap}>
+                <label className={styles.title}></label>
+                <input
+                  type={item.type}
+                  placeholder={item.placeholder}
+                  name={item.name}
+                  onChange={(e) => {
+                    onChange(item.key, e.target.value);
+                  }}
+                />
+              </div>
             )}
             {errors[item.key]?.length > 0 && (
-              <div>{errors[item.key].join(",")}</div>
+              <div className="error">{errors[item.key].join(",")}</div>
             )}
           </div>
         ))}

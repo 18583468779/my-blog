@@ -11,7 +11,7 @@ type Props = {
 };
 const postsShow: NextPage<Props> = (props) => {
   const { post, user } = props;
-  console.log(post, user);
+  // console.log(post, user);
   return (
     <>
       <style jsx>{`
