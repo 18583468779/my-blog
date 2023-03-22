@@ -22,9 +22,20 @@ const Users: NextApiHandler = async (req, res) => {
     user.passwordDigest = md5(password);
     const AppDataSource = await getDataSource();
     const userRepository = AppDataSource.getRepository(User);
-    await userRepository.save(user);
-    res.statusCode = 200;
-    res.write(JSON.stringify(user));
+    //判断是否已经注册
+    const hasUser = await userRepository.find({
+      where: { username: username },
+    });
+    // console.log(hasUser, "hasUser");
+    if (hasUser.length == 0) {
+      await userRepository.save(user);
+      res.statusCode = 200;
+      res.write(JSON.stringify(user));
+    } else {
+      res.statusCode = 422;
+      user.errors.username.push("用户已注册");
+      res.write(JSON.stringify(user.errors));
+    }
   }
   res.end();
 };

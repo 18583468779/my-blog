@@ -2,88 +2,73 @@ import axios, { AxiosResponse } from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEventHandler, useEffect, useState } from "react";
-
+import styles from "@/styles/NewPost.module.css";
+import { useForm } from "@/hooks/useForm";
+import Link from "next/link";
 const SignUp: NextPage = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    passwordConfirm: "",
-  });
-  const [errors, setErrors] = useState({
-    username: [] as string[],
-    password: [] as string[],
-    passwordConfirm: [] as string[],
-  });
   const router = useRouter();
-  useEffect(() => {
-    // console.log(formData);
-  }, [formData]);
-  const submitFormData: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    axios.post("/api/v1/users", formData).then(
-      (res) => {
-        console.log(res);
-        if (res.status == 200) {
-          window.alert("注册成功");
-          // window.location.href = "/sign_in";
-          router.push("/sign_in");
-        }
+  const { form } = useForm({
+    initFormData: { username: "", password: "", passwordConfirm: "" },
+    fields: [
+      {
+        label: "用户名",
+        placeholder: "请输入用户名*",
+        name: "username",
+        type: "text",
+        key: "username",
+        iconType: "userTitle",
       },
-      (error) => {
-        if (error.response) {
-          const response: AxiosResponse = error.response;
-          if (response.status === 422) {
-            setErrors(response.data);
-          }
-        }
-      }
-    );
-  };
-
-  return (
-    <div>
-      <h1>欢迎注册</h1>
-      <form onSubmit={submitFormData}>
-        <div>
-          <label>用户名:</label>
-          <input
-            type="text"
-            placeholder="请输入用户名"
-            name="username"
-            onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
-            }
-          />
-          {errors.username.join(",")}
-        </div>
-        <div>
-          <label>密码:</label>
-          <input
-            type="password"
-            placeholder="请输入密码"
-            name="password"
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-          />
-          {errors.password.join(",")}
-        </div>
-        <div>
-          <label>确认密码:</label>
-          <input
-            type="password"
-            placeholder="请再次输入密码"
-            name="passwordConfirm"
-            onChange={(e) =>
-              setFormData({ ...formData, passwordConfirm: e.target.value })
-            }
-          />
-          {errors.passwordConfirm.join(",")}
-        </div>
-        <div>
+      {
+        label: "密码",
+        placeholder: "请输入密码*",
+        name: "password",
+        type: "password",
+        key: "password",
+        iconType: "pwdTitle",
+      },
+      {
+        label: "确认密码",
+        placeholder: "请再次输入密码*",
+        name: "passwordConfirm",
+        type: "password",
+        key: "passwordConfirm",
+        iconType: "pwdTitle",
+      },
+    ],
+    buttons: (
+      <div>
+        <div className="btns">
           <button type="submit">注册</button>
         </div>
-      </form>
+        <div className="btns">
+          <button type="button">
+            <Link href="/sign_in">登录</Link>
+          </button>
+        </div>
+      </div>
+    ),
+
+    submit: {
+      request: (formData) => axios.post("/api/v1/users", formData),
+      message: () => {
+        window.alert("注册成功");
+        router.push("/sign_in");
+      },
+    },
+  });
+
+  return (
+    <div className={styles.posts}>
+      <div className={styles.postWrap}>
+        <img
+          src="/images/user-logo.svg"
+          alt="user-title"
+          width={64}
+          className={styles.blogLogo}
+        />
+        <h1>注册</h1>
+      </div>
+      <div>{form}</div>
     </div>
   );
 };

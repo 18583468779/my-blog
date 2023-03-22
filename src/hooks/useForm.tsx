@@ -7,6 +7,7 @@ type Filed<T> = {
   name: string;
   type: "text" | "password" | "textarea";
   key: keyof T;
+  iconType: "title" | "textTitle" | "userTitle" | "pwdTitle";
 };
 
 type useFormInitData<T> = {
@@ -60,12 +61,30 @@ export function useForm<T>(options: useFormInitData<T>) {
 
   const form = (
     <div className={styles.useForm}>
+      <style jsx>
+        {`
+          .title {
+            background-image: url(/images/title.svg);
+          }
+          .textTitle {
+            height: 20px;
+            top: 10px;
+            background-image: url(/images/content.svg);
+          }
+          .userTitle {
+            background-image: url(/images/userTitle.svg);
+          }
+          .pwdTitle {
+            background-image: url(/images/pwdTitle.svg);
+          }
+        `}
+      </style>
       <form onSubmit={_onSubmit}>
         {fields.map((item) => (
           <div key={item.label}>
             {item.type === "textarea" ? (
               <div className={styles.textareaWrap}>
-                <label className={styles.textTitle}></label>
+                <label className={item.iconType}></label>
                 <textarea
                   name={item.name}
                   placeholder={item.placeholder}
@@ -76,7 +95,7 @@ export function useForm<T>(options: useFormInitData<T>) {
               </div>
             ) : (
               <div className={styles.inputWrap}>
-                <label className={styles.title}></label>
+                <label className={item.iconType}></label>
                 <input
                   type={item.type}
                   placeholder={item.placeholder}

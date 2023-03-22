@@ -32,14 +32,6 @@
   background-position: 50%;
   content: "";
 }
-.useForm form > div .title {
-  background-image: url(../../public/images/title.svg);
-}
-.useForm form > div .textTitle {
-  height: 20px;
-  top: 10px;
-  background-image: url(../../public/images/content.svg);
-}
 .useForm form .inputWrap {
   height: 60px;
 }

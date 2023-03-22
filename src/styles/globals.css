@@ -45,8 +45,9 @@ body{
     color: #2a2a2a;
     font-weight: 500;
     font-size: 12px;
-    /* -webkit-transition: all .1s;
-    transition: all .1s; */
+}
+.stripe-filed:focus, .stripe-filed:hover, input[type=email]:focus, input[type=email]:hover, input[type=number]:focus, input[type=number]:hover, input[type=password]:focus, input[type=password]:hover, input[type=search]:focus, input[type=search]:hover, input[type=tel]:focus, input[type=tel]:hover, input[type=text]:focus, input[type=text]:hover, select:focus, select:hover, textarea:focus, textarea:hover {
+    border: 2px solid #005fff;
 }
 a.active {
     color: rgb(108,132,156);
@@ -116,7 +117,6 @@ a.active::after{
     color: #fff;
     overflow: hidden;
     background: #0085ff;
-    color: #fff;
     cursor: pointer;
     position: relative;
     display: -webkit-box;
@@ -138,6 +138,9 @@ a.active::after{
     border-radius: 5px;
     -webkit-box-shadow: 0 12px 24px rgb(0 133 255 / 24%);
     box-shadow: 0 12px 24px rgb(0 133 255 / 24%);
+}
+.btns button a{
+    color: white;
 }
 .btns button:hover{
     background: #00a6ff;

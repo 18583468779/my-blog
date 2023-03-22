@@ -18,6 +18,7 @@ const PostsNew: NextPage = () => {
         name: "postname",
         type: "text",
         key: "title",
+        iconType: "title",
       },
       {
         label: "内容",
@@ -25,6 +26,7 @@ const PostsNew: NextPage = () => {
         name: "content",
         type: "textarea",
         key: "content",
+        iconType: "textTitle",
       },
     ],
     buttons: (

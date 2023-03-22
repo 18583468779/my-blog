@@ -54,6 +54,7 @@ export class User {
     if (this.password.length < 3) {
       this.errors.password.push("密码太短");
     }
+
     if (this.password !== this.passwordConfirm) {
       this.errors.passwordConfirm.push("密码不匹配");
     }

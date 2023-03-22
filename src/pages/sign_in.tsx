@@ -1,11 +1,14 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { NextPage } from "next";
-import { useState, useEffect, FormEventHandler } from "react";
+import { useState, useEffect } from "react";
 import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/router";
-import { getCurrentUser, getUserSure } from "@/redux/features/userSlice";
+import styles from "@/styles/NewPost.module.css";
+import { getUserSure } from "@/redux/features/userSlice";
+import { useForm } from "@/hooks/useForm";
+import Link from "next/link";
 type Props = {
   user: {
     user: {
@@ -15,15 +18,6 @@ type Props = {
   };
 };
 const SignIn: NextPage<Props> = (props) => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    passwordConfirm: "",
-  });
-  const [errors, setErrors] = useState({
-    username: [] as string[],
-    password: [] as string[],
-  });
   const [confirmLogin, setConfirmLogin] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -33,78 +27,74 @@ const SignIn: NextPage<Props> = (props) => {
     if (sessions) {
       setConfirmLogin(true);
       // console.log(props);
-      // router.push("/");
+      router.push("/");
     }
   }, []);
 
-  const submitFormData: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    axios.post("/api/v1/sessions", formData).then(
-      (res) => {
-        console.log(res);
-        if (res.status == 200) {
-          window.alert("登录成功");
-          const query = queryString.parse(window.location.search);
-          if (query.return_to) {
-            window.location.href = query.return_to?.toString();
-            // router.push(query.return_to?.toString());
-          } else {
-            window.location.href = "/";
-            // router.push("/");
-          }
-          //将登录信息给store
-          const state = props.user;
-          dispatch(getUserSure(state));
-        }
+  const { form } = useForm({
+    initFormData: { username: "", password: "" },
+    fields: [
+      {
+        label: "用户名",
+        placeholder: "请输入用户名*",
+        name: "username",
+        type: "text",
+        key: "username",
+        iconType: "userTitle",
       },
-      (error) => {
-        if (error.response) {
-          const response: AxiosResponse = error.response;
-          if (response.status === 422) {
-            setErrors(response.data);
-          }
-        }
-      }
-    );
-  };
-
-  return (
-    <div>
-      {confirmLogin && ( //@ts-ignore
-        <div>用户已登录:{props.user.user?.username}</div>
-      )}
-
-      <h1>欢迎登录</h1>
-      <form onSubmit={submitFormData}>
-        <div>
-          <label>用户名:</label>
-          <input
-            type="text"
-            placeholder="请输入用户名"
-            name="username"
-            onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
-            }
-          />
-          {errors.username.join(",")}
-        </div>
-        <div>
-          <label>密码:</label>
-          <input
-            type="password"
-            placeholder="请输入密码"
-            name="password"
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-          />
-          {errors.password.join(",")}
-        </div>
-
-        <div>
+      {
+        label: "密码",
+        placeholder: "请输入密码*",
+        name: "password",
+        type: "password",
+        key: "password",
+        iconType: "pwdTitle",
+      },
+    ],
+    buttons: (
+      <div>
+        <div className="btns">
           <button type="submit">登录</button>
         </div>
-      </form>
+        <div className="btns">
+          <button type="button">
+            <Link href="/sign_up">注册</Link>
+          </button>
+        </div>
+      </div>
+    ),
+
+    submit: {
+      request: (formData) => axios.post("/api/v1/sessions", formData),
+      message: () => {
+        window.alert("登录成功");
+        const query = queryString.parse(window.location.search);
+        if (query.return_to) {
+          window.location.href = query.return_to?.toString();
+          // router.push(query.return_to?.toString());
+        } else {
+          window.location.href = "/";
+          // router.push("/");
+        }
+        //将登录信息给store
+        const state = props.user;
+        dispatch(getUserSure(state));
+      },
+    },
+  });
+
+  return (
+    <div className={styles.posts}>
+      <div className={styles.postWrap}>
+        <img
+          src="/images/user-logo.svg"
+          alt="user-title"
+          width={64}
+          className={styles.blogLogo}
+        />
+        <h1>登录</h1>
+      </div>
+      <div>{form}</div>
     </div>
   );
 };
