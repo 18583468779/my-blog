@@ -13,7 +13,10 @@ export const config = {
   },
 };
 
-const redFile = (req: NextApiRequest, saveLocally?: boolean) => {
+const redFile = (
+  req: NextApiRequest,
+  saveLocally?: boolean
+): Promise<{ fields: formidable.Fields; files: formidable.Files }> => {
   const options: formidable.Options = {};
   if (saveLocally) {
     options.uploadDir = path.join(cwd(), "/public/images/user");
@@ -40,7 +43,11 @@ const Image: NextApiHandler = withSessionRoute(async (req, res) => {
       console.log(err);
     });
   }
-  redFile(req, true);
+  const filesData = await redFile(req, true);
+  const myImage: any = filesData.files.myImage;
+
+  //   console.log(myImage.newFilename, "filesData");
+
   const AppDataSource = await getDataSource();
   //@ts-ignore
   const user = req.session.user?.username;
@@ -54,8 +61,8 @@ const Image: NextApiHandler = withSessionRoute(async (req, res) => {
   const hasUser = await userRepository.findOneBy({
     username: user,
   });
-
-  console.log("hasUser", hasUser);
+  hasUser.picture = myImage.newFilename; //上传图片到数据库
+  await userRepository.save(hasUser);
   res.json({ done: "ok" });
 });
 export default Image;

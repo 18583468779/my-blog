@@ -8,11 +8,16 @@ const Member: NextPage = () => {
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File>();
+  const [getImage, setGetImage] = useState("");
 
   useEffect(() => {
-    // console.log("selectedImage", selectedImage);
-    // console.log("selectedFile", selectedFile);
-  }, [selectedImage, selectedFile]);
+    //get user picture
+    axios.post("api/v1/getImage", { data: "get_user_picture" }).then((res) => {
+      if ((res.status = 200)) {
+        setGetImage(res.data.image);
+      }
+    });
+  }, [selectedImage, selectedFile, getImage]);
 
   const handleUpload = async () => {
     setUploading(true);
@@ -21,14 +26,15 @@ const Member: NextPage = () => {
       const formData = new FormData();
       formData.append("myImage", selectedFile);
       const { data } = await axios.post("api/v1/image", formData);
-      console.log("data", data);
+      // console.log("data", data);
       if (data.done == "ok") {
         window.alert("头像上传成功");
+        setUploading(false);
+        setSelectedImage("");
       }
     } catch (error) {
       console.log(error);
     }
-    setUploading(false);
   };
 
   return (
@@ -41,7 +47,11 @@ const Member: NextPage = () => {
           <div className={styles.userInfoContainer}>
             <dl className={styles.userInfoSummery}>
               <dt>
-                <img src="/images/defaultUser.svg" alt="picture" />
+                {getImage === "" ? (
+                  <img src="/images/defaultUser.svg" alt="picture" />
+                ) : (
+                  <img src={`images/user/${getImage}`} alt="picture" />
+                )}
               </dt>
               <dd>
                 <div className={styles.username}>{user.username}</div>
