@@ -3,6 +3,9 @@ import fs from "fs";
 import path from "path";
 import formidable from "formidable";
 import { cwd } from "process";
+import { withSessionRoute } from "../../../../lib/withSession";
+import { getDataSource } from "@/data-source";
+import { User } from "@/entities/User";
 
 export const config = {
   api: {
@@ -27,7 +30,7 @@ const redFile = (req: NextApiRequest, saveLocally?: boolean) => {
   });
 };
 
-const Image: NextApiHandler = async (req, res) => {
+const Image: NextApiHandler = withSessionRoute(async (req, res) => {
   try {
     await fs.readdir(path.join(cwd() + "/public", "/images/user"), (err) => {
       console.log(err);
@@ -38,6 +41,21 @@ const Image: NextApiHandler = async (req, res) => {
     });
   }
   redFile(req, true);
+  const AppDataSource = await getDataSource();
+  //@ts-ignore
+  const user = req.session.user?.username;
+  if (!user) {
+    res.statusCode = 401;
+    res.end();
+    return;
+  }
+  //根据session用户名查询用户
+  const userRepository = AppDataSource.getRepository(User);
+  const hasUser = await userRepository.findOneBy({
+    username: user,
+  });
+
+  console.log("hasUser", hasUser);
   res.json({ done: "ok" });
-};
+});
 export default Image;

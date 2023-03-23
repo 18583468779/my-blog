@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from "@/styles/Member.module.css";
 import { useAppSelector } from "@/redux/hooks";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 const Member: NextPage = () => {
   const user = useAppSelector((state) => state.currentUser);
@@ -22,6 +22,9 @@ const Member: NextPage = () => {
       formData.append("myImage", selectedFile);
       const { data } = await axios.post("api/v1/image", formData);
       console.log("data", data);
+      if (data.done == "ok") {
+        window.alert("头像上传成功");
+      }
     } catch (error) {
       console.log(error);
     }
