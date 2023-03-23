@@ -1,0 +1,128 @@
+.member {
+  width: 100%;
+}
+.member .userInfo {
+  width: 100%;
+  background: url(../../public/images/user-banner.svg) no-repeat top center;
+  background-size: 100% 198px;
+}
+.member .userTitle {
+  padding-top: 100px;
+}
+.member .userTitle h2 {
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+.member .userInfoContainer {
+  margin-top: 18px;
+  min-height: 50px;
+  padding: 28px 40px 40px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 8px 18px #8b73ef30;
+}
+.member .userInfoContainer .userInfoSummery {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.member .userInfoContainer .userInfoSummery dt {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border: 6px solid #EEEDFD;
+  border-radius: 70px;
+}
+.member .userInfoContainer .userInfoSummery dt img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.member .userInfoContainer .userInfoSummery dd {
+  display: flex;
+  flex-direction: column;
+  margin-left: 34px;
+}
+.member .userInfoContainer .userInfoSummery dd .username {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+  color: #000;
+}
+.member .userInfoContainer .userInfoSummery dd .details {
+  display: flex;
+}
+.member .userInfoContainer .userInfoSummery dd .details li {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.member .userInfoContainer .userInfoSummery dd .details li strong {
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 600;
+  color: #A19ABF;
+  margin-right: 6px;
+}
+.member .userInfoContainer .userInfoSummery dd .details li span {
+  font-size: 14px;
+  color: #A19ABF;
+}
+.member .userStore .userStoreCon {
+  margin-top: 60px;
+  min-height: 50px;
+  padding: 28px 40px 40px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 8px 18px #8b73ef30;
+}
+.member .userStore .userStoreCon .logo {
+  text-align: center;
+}
+.member .userStore .userStoreCon h2 {
+  text-align: center;
+}
+.member .userStore .userStoreCon .perfectInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  gap: 18px;
+}
+.member .userStore .userStoreCon .perfectInfo li {
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: all 0.1s ease;
+  border-radius: 10px;
+  position: relative;
+}
+.member .userStore .userStoreCon .perfectInfo li:hover {
+  background: #8b73ef90;
+  color: white;
+}
+.member .userStore .userStoreCon .perfectInfo li .fileWrap {
+  margin: 0 auto;
+}
+.member .userStore .userStoreCon .perfectInfo li .fileWrap .file {
+  margin: 0 auto;
+  width: 100px;
+  padding: 3px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #8b73ef30;
+  cursor: pointer;
+}
+.member .userStore .userStoreCon .perfectInfo li .fileWrap .fileValue {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 11;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

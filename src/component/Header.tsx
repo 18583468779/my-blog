@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import styles from "@/styles/Header.module.css";
 import Link from "next/link";
-import { useEffect } from "react";
 import { useAppSelector } from "@/redux/hooks";
 
 const Header: NextPage = (props) => {
@@ -32,7 +31,9 @@ const Header: NextPage = (props) => {
 
             {users.currentUser ? (
               <li>
-                <h3>用户：{users.username}</h3>
+                <h3>
+                  <Link href={"/member"}> 用户：{users.username}</Link>
+                </h3>
               </li>
             ) : (
               <li className={styles.users}>
