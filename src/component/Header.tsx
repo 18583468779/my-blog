@@ -26,7 +26,7 @@ const Header: NextPage = (props) => {
               <Link href={"/posts/new"}>写博客</Link>
             </li>
             <li>
-              <Link href={"/connection"}>联系我</Link>
+              <Link href={"/posts/myblog"}>我的博客</Link>
             </li>
 
             {users.currentUser ? (
