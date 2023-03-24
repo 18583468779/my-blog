@@ -149,3 +149,19 @@ a.active::after{
     font-size: 12px;
     color: lightcoral;
 }
+
+.grey{
+    background: lightgray;
+    color: white;
+}
+.blue{
+    background: #8b73ef60;
+    color: white;
+
+}
+.grey:hover{
+    background: gray;  
+}
+.blue:hover{
+    background: #8b73ef;  
+}

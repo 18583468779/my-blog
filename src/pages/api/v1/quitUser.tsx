@@ -1,6 +1,3 @@
-import { getDataSource } from "@/data-source";
-import { User } from "@/entities/User";
-
 import { NextApiHandler } from "next";
 import { withSessionRoute } from "../../../../lib/withSession";
 //判断用户是否登录
@@ -14,18 +11,9 @@ const getImage: NextApiHandler = withSessionRoute(async (req, res) => {
       res.end();
       return;
     }
-
-    //根据session用户名查询用户
-    const AppDataSource = await getDataSource();
-    const userRepository = AppDataSource.getRepository(User);
-    const hasUser = await userRepository.findOneBy({
-      username: user,
-    });
-    if (hasUser) {
-      const image = hasUser.picture;
-      res.statusCode = 200;
-      res.write(JSON.stringify({ image }));
-    }
+    req.session.destroy(); //清除缓存
+    res.statusCode = 200;
+    res.write(JSON.stringify({ done: "退出登录成功" }));
 
     res.end();
   }

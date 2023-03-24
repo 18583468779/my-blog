@@ -51,6 +51,11 @@
   font-weight: 600;
   color: #000;
 }
+.member .userInfoContainer .userInfoSummery dd .username span {
+  color: #333;
+  font-size: 12px;
+  margin-left: 20px;
+}
 .member .userInfoContainer .userInfoSummery dd .details {
   display: flex;
 }
@@ -83,6 +88,60 @@
 }
 .member .userStore .userStoreCon h2 {
   text-align: center;
+  margin-bottom: 10px;
+}
+.member .userStore .userStoreCon .uploadFileWrap {
+  margin-top: 20px;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap {
+  width: 100%;
+  height: 80px;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap .file {
+  margin-right: 10px;
+  width: 100px;
+  padding: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #8b73ef30;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap .file:hover {
+  background: #8b73ef;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap .file:hover > button {
+  color: white;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap .fileValue {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 11;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap .uploadImage {
+  font-size: 12px;
+  border: 2px dashed #8b73ef30;
+  padding: 4px;
+  border-radius: 10px;
+}
+.member .userStore .userStoreCon .uploadFileWrap .fileWrap .uploadImage:hover {
+  background: #8b73ef;
+  color: white;
 }
 .member .userStore .userStoreCon .perfectInfo {
   display: flex;
@@ -102,27 +161,4 @@
 .member .userStore .userStoreCon .perfectInfo li:hover {
   background: #8b73ef90;
   color: white;
-}
-.member .userStore .userStoreCon .perfectInfo li .fileWrap {
-  margin: 0 auto;
-}
-.member .userStore .userStoreCon .perfectInfo li .fileWrap .file {
-  margin: 0 auto;
-  width: 100px;
-  padding: 3px 0;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed #8b73ef30;
-  cursor: pointer;
-}
-.member .userStore .userStoreCon .perfectInfo li .fileWrap .fileValue {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 11;
-  left: 0;
-  top: 0;
-  opacity: 0;
 }
