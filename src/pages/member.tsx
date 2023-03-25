@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useFloat } from "@/hooks/useFloat";
 import { useRouter } from "next/router";
+import Link from "next/link";
 const Member: NextPage = () => {
   const router = useRouter();
   const user = useAppSelector((state) => state.currentUser);
@@ -148,7 +149,9 @@ const Member: NextPage = () => {
                 <p>添加邮箱</p>
               </li>
               <li>
-                <p>重置密码</p>
+                <p>
+                  <Link href={"/posts/myblog"}>我的博客</Link>
+                </p>
               </li>
               <li onClick={handleQuit}>
                 <p>退出登录</p>

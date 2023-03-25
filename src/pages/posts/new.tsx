@@ -5,10 +5,27 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
+import { useFloat } from "@/hooks/useFloat";
+import { useState } from "react";
 
 const PostsNew: NextPage = () => {
   const user = useAppSelector((state) => state.currentUser);
-  const router = useRouter();
+  const [showQuit, setShowQuit] = useState(false);
+
+  const sureFn = () => {
+    setShowQuit(true);
+  };
+
+  const { Float: FloatUser } = useFloat({
+    show: showQuit,
+    setShowQuit,
+    initData: { ev: "quit" },
+    title: "提交成功",
+    type: "message",
+    sureFn: sureFn,
+    surePath: "/posts/myblog",
+  });
+
   const { form } = useForm({
     initFormData: { title: "", content: "" },
     fields: [
@@ -37,9 +54,8 @@ const PostsNew: NextPage = () => {
     submit: {
       request: (formData) => axios.post("/api/v1/posts", formData),
       message: () => {
-        window.alert("提交成功！！");
-        // window.location.href = "/posts";
-        router.push("/posts");
+        //提交成功
+        sureFn();
       },
     },
   });
@@ -85,6 +101,7 @@ const PostsNew: NextPage = () => {
           </div>
         </div>
       )}
+      {showQuit ? FloatUser : ""}
     </>
   );
 };

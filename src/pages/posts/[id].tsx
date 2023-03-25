@@ -28,9 +28,19 @@ const postsShow: NextPage<Props> = (props) => {
         }
       `}</style>
       <div className="container">
-        <h1>{post.title}</h1>
-        <article dangerouslySetInnerHTML={{ __html: post.content }}></article>
-        <p>作者：{user?.username}</p>
+        {post ? (
+          <div>
+            <h1>{post.title}</h1>
+            <article
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            ></article>
+            <p>作者：{user?.username}</p>
+          </div>
+        ) : (
+          <div>
+            <h1>您还没有博客</h1>
+          </div>
+        )}
       </div>
     </>
   );
@@ -48,9 +58,11 @@ export const getServerSideProps: GetServerSideProps<
     id: parseInt(context.params.id),
   });
   const userRepository = AppDataSource.getRepository(User);
+
   const user = await userRepository.findOneBy({
-    id: post.authorId,
+    id: post?.authorId,
   });
+
   return {
     props: {
       post: JSON.parse(JSON.stringify(post)),

@@ -3,10 +3,12 @@ import styles from "@/styles/MyBlog.module.css";
 import { Post } from "@/entities/Post";
 import { usePager } from "@/hooks/userPager";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { getDataSource } from "@/data-source";
 import { User } from "@/entities/User";
 import { withSessionSsr } from "../../../lib/withSession";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 type Props = {
   posts: Post[];
@@ -19,6 +21,7 @@ const Myblog: NextPage<Props> = (props) => {
   const { posts, page, totalPage, username } = props;
   const { pager } = usePager({ page, totalPage });
 
+  const router = useRouter();
   const handleDelete = (e: any, id: number) => {
     e.preventDefault();
     axios.post("/api/v1/deletePost", { id }).then((res) => {
@@ -26,6 +29,9 @@ const Myblog: NextPage<Props> = (props) => {
         window.alert("删除成功");
       }
     });
+  };
+  const handleLink = (e: any, id: number) => {
+    router.push(`/posts/${id}`);
   };
   return (
     <div className={styles.myBlog}>
@@ -38,31 +44,32 @@ const Myblog: NextPage<Props> = (props) => {
           {posts.length > 0 ? (
             posts.map((p) => (
               <div key={p.id} className={styles.link}>
-                <Link href={`/posts/${p.id}`}>
-                  <div className={styles.linkWrap}>
-                    <p className={styles.fonts}>
-                      {p.title ? (
-                        <strong>
-                          {p.id}.{p.title}
-                        </strong>
-                      ) : (
-                        "没有标题"
-                      )}
-                    </p>
-                    <div className={styles.linkWrapBtn}>
-                      <button type="button" className="blue">
-                        <Link href={`/posts/edit/${p.id}`}>编辑</Link>
-                      </button>
-                      <button
-                        type="button"
-                        className="grey"
-                        onClick={(e) => handleDelete(e, p.id)}
-                      >
-                        删除
-                      </button>
-                    </div>
+                <div
+                  className={styles.linkWrap}
+                  onClick={(e) => handleLink(e, p.id)}
+                >
+                  <div className={styles.fonts}>
+                    {p.title ? (
+                      <strong>
+                        {p.id}.{p.title}
+                      </strong>
+                    ) : (
+                      "没有标题"
+                    )}
                   </div>
-                </Link>
+                  <div className={styles.linkWrapBtn}>
+                    <button type="button" className="blue">
+                      <Link href={`/posts/edit/${p.id}`}>编辑</Link>
+                    </button>
+                    <button
+                      type="button"
+                      className="grey"
+                      onClick={(e) => handleDelete(e, p.id)}
+                    >
+                      删除
+                    </button>
+                  </div>
+                </div>
               </div>
             ))
           ) : (
