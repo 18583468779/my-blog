@@ -16,9 +16,7 @@ const Header: NextPage = (props) => {
         </div>
         <nav className={styles.nav}>
           <ul>
-            <li>
-              <Link href={"/search"}>搜索</Link>
-            </li>
+            <li>{/* <Link href={"/search"}>搜索</Link> */}</li>
             <li>
               <Link href={"/posts"}>博客广场</Link>
             </li>

@@ -24,7 +24,7 @@ type useFormInitData<T> = {
 
 export function useForm<T>(options: useFormInitData<T>) {
   const { initFormData, fields, buttons, submit } = options;
-  console.log(initFormData, "initFormData");
+  // console.log(initFormData, "initFormData");
   const [initData, setInitData] = useState(initFormData);
   const [errors, setErrors] = useState(() => {
     const e: { [k in keyof T]?: string[] } = {};

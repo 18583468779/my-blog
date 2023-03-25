@@ -3,12 +3,13 @@ import styles from "@/styles/MyBlog.module.css";
 import { Post } from "@/entities/Post";
 import { usePager } from "@/hooks/userPager";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { getDataSource } from "@/data-source";
 import { User } from "@/entities/User";
 import { withSessionSsr } from "../../../lib/withSession";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useFloat } from "@/hooks/useFloat";
+import { useState } from "react";
 
 type Props = {
   posts: Post[];
@@ -18,21 +19,42 @@ type Props = {
   username: string;
 };
 const Myblog: NextPage<Props> = (props) => {
-  const { posts, page, totalPage, username } = props;
+  const { posts, page, totalPage } = props;
   const { pager } = usePager({ page, totalPage });
 
   const router = useRouter();
   const handleDelete = (e: any, id: number) => {
-    e.preventDefault();
+    e.stopPropagation();
     axios.post("/api/v1/deletePost", { id }).then((res) => {
       if (res.status == 200) {
-        window.alert("删除成功");
+        sureFn();
       }
     });
   };
   const handleLink = (e: any, id: number) => {
     router.push(`/posts/${id}`);
   };
+  const handleEdit = (e: any, id: number) => {
+    e.stopPropagation();
+    router.push(`/posts/edit/${id}`);
+  };
+
+  const [showQuit, setShowQuit] = useState(false);
+
+  const sureFn = () => {
+    setShowQuit(true);
+  };
+
+  const { Float: FloatUser } = useFloat({
+    show: showQuit,
+    setShowQuit,
+    initData: { ev: "delete" },
+    title: "删除成功",
+    type: "message",
+    sureFn: sureFn,
+    surePath: "/posts/myblog",
+  });
+
   return (
     <div className={styles.myBlog}>
       <div className={"container"}>
@@ -59,7 +81,7 @@ const Myblog: NextPage<Props> = (props) => {
                   </div>
                   <div className={styles.linkWrapBtn}>
                     <button type="button" className="blue">
-                      <Link href={`/posts/edit/${p.id}`}>编辑</Link>
+                      <div onClick={(e) => handleEdit(e, p.id)}>编辑</div>
                     </button>
                     <button
                       type="button"
@@ -85,6 +107,7 @@ const Myblog: NextPage<Props> = (props) => {
           </footer>
         </div>
       </div>
+      {showQuit ? FloatUser : ""}
     </div>
   );
 };

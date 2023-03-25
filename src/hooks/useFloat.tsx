@@ -43,6 +43,7 @@ export const useFloat = (options: useFloatInitData) => {
   const handleSure = () => {
     sureFn();
     router.push(surePath);
+    setShowQuit(false); //关闭弹窗
   };
 
   const Float = (
