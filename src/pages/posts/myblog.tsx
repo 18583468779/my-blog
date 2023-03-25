@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getDataSource } from "@/data-source";
 import { User } from "@/entities/User";
 import { withSessionSsr } from "../../../lib/withSession";
+import axios from "axios";
 
 type Props = {
   posts: Post[];
@@ -17,6 +18,15 @@ type Props = {
 const Myblog: NextPage<Props> = (props) => {
   const { posts, page, totalPage, username } = props;
   const { pager } = usePager({ page, totalPage });
+
+  const handleDelete = (e: any, id: number) => {
+    e.preventDefault();
+    axios.post("/api/v1/deletePost", { id }).then((res) => {
+      if (res.status == 200) {
+        window.alert("删除成功");
+      }
+    });
+  };
   return (
     <div className={styles.myBlog}>
       <div className={"container"}>
@@ -29,10 +39,28 @@ const Myblog: NextPage<Props> = (props) => {
             posts.map((p) => (
               <div key={p.id} className={styles.link}>
                 <Link href={`/posts/${p.id}`}>
-                  <div>
+                  <div className={styles.linkWrap}>
                     <p className={styles.fonts}>
-                      {p.title ? p.title : "没有标题"}
+                      {p.title ? (
+                        <strong>
+                          {p.id}.{p.title}
+                        </strong>
+                      ) : (
+                        "没有标题"
+                      )}
                     </p>
+                    <div className={styles.linkWrapBtn}>
+                      <button type="button" className="blue">
+                        <Link href={`/posts/edit/${p.id}`}>编辑</Link>
+                      </button>
+                      <button
+                        type="button"
+                        className="grey"
+                        onClick={(e) => handleDelete(e, p.id)}
+                      >
+                        删除
+                      </button>
+                    </div>
                   </div>
                 </Link>
               </div>

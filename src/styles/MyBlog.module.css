@@ -24,6 +24,28 @@
 }
 .myBlog .postList div.link {
   margin-bottom: 20px;
+  border: 2px solid #40474F;
+  width: 500px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.myBlog .postList div.link .linkWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.myBlog .postList div.link .linkWrap .linkWrapBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.myBlog .postList div.link .linkWrap .linkWrapBtn button {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+.myBlog .postList div.link .linkWrap .linkWrapBtn button a {
+  color: white;
 }
 .myBlog .postList .fonts {
   font-size: 20px;

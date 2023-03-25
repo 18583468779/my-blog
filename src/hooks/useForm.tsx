@@ -8,6 +8,8 @@ type Filed<T> = {
   type: "text" | "password" | "textarea";
   key: keyof T;
   iconType: "title" | "textTitle" | "userTitle" | "pwdTitle";
+  title?: string;
+  content?: string;
 };
 
 type useFormInitData<T> = {
@@ -22,6 +24,7 @@ type useFormInitData<T> = {
 
 export function useForm<T>(options: useFormInitData<T>) {
   const { initFormData, fields, buttons, submit } = options;
+  console.log(initFormData, "initFormData");
   const [initData, setInitData] = useState(initFormData);
   const [errors, setErrors] = useState(() => {
     const e: { [k in keyof T]?: string[] } = {};
@@ -91,6 +94,7 @@ export function useForm<T>(options: useFormInitData<T>) {
                   onChange={(e) => {
                     onChange(item.key, e.target.value);
                   }}
+                  defaultValue={(initFormData as any).content}
                 ></textarea>
               </div>
             ) : (
@@ -103,6 +107,7 @@ export function useForm<T>(options: useFormInitData<T>) {
                   onChange={(e) => {
                     onChange(item.key, e.target.value);
                   }}
+                  defaultValue={(initFormData as any).title}
                 />
               </div>
             )}
