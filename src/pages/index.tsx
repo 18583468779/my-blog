@@ -16,11 +16,12 @@ const Home: NextPage = (props) => {
             <div>
               <p>
                 创建一个博客。与世界分享你的故事。
-                <br /> 凭借专业设计的博客网站脱颖而出，可以根据您的故事进行定制
+                <br />
+                凭借专业设计的博客网站脱颖而出，可以根据您的故事进行定制
               </p>
               <div className={styles.posts}>
                 <Link href={"/posts"}>
-                  前往文章列表 <span>{">>"}</span>
+                  前往文章列表 <span> {">>"}</span>
                 </Link>
               </div>
             </div>
