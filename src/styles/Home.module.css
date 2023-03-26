@@ -43,6 +43,25 @@
 .home .banner .bannerRight {
   width: 50%;
 }
+@media screen and (max-width: 768px) {
+  .home .banner {
+    flex-direction: column;
+    padding-top: 180px;
+  }
+  .home .banner .bannerLeft {
+    width: 100%;
+  }
+  .home .banner .bannerLeft h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .home .banner .bannerLeft > div {
+    text-align: center;
+  }
+  .home .banner .posts {
+    margin: 0 auto;
+  }
+}
 @keyframes aniArrow {
   0% {
     transform: translateX(-5px);

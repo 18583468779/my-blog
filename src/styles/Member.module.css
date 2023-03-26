@@ -162,3 +162,11 @@
   background: #8b73ef90;
   color: white;
 }
+@media screen and (max-width: 768px) {
+  .member .userInfoContainer .userInfoSummery {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+}

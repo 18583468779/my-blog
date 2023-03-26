@@ -25,6 +25,12 @@ body{
     padding:0 150px;
     margin: 0 auto;
 }
+.pc{
+    display: block !important;
+}
+.mob{
+    display: none !important;
+}
 .stripe-filed, input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], select, textarea {
     position: relative;
     -webkit-box-sizing: border-box;
@@ -164,4 +170,22 @@ a.active::after{
 }
 .blue:hover{
     background: #8b73ef;  
+}
+
+@media screen and (max-width:768px) {
+    body{
+        font-family: 'Poppins', sans-serif;
+        padding-top: 0px;
+    }
+    .container{
+        width: 100%;
+        padding:0 10px;
+        margin: 0 auto;
+    }
+    .pc{
+        display: none !important;
+    }
+    .mob{
+        display: block !important;
+    }
 }

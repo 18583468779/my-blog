@@ -104,3 +104,100 @@
   font-size: 24px;
   margin-top: 10px;
 }
+@media screen and (max-width: 768px) {
+  .myBlog {
+    padding-top: 100px;
+  }
+  .myBlog .Posts {
+    padding-top: 100px;
+    height: 100vh;
+    box-sizing: border-box;
+    background: rgba(250, 230, 249, 0.35);
+  }
+  .myBlog .Posts h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+  .myBlog .Posts h2 {
+    font-size: 16px;
+    text-align: center;
+  }
+  .myBlog .postList {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .myBlog .postList div.link {
+    margin-bottom: 20px;
+    border: 2px solid #40474F;
+    width: 98%;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .myBlog .postList div.link .linkWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .myBlog .postList div.link .linkWrap .linkWrapBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .myBlog .postList div.link .linkWrap .linkWrapBtn button {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+  .myBlog .postList div.link .linkWrap .linkWrapBtn button a {
+    color: white;
+  }
+  .myBlog .postList .fonts {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  .myBlog .postList .fonts span {
+    font-size: 12px;
+  }
+  .myBlog .notBlog {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .myBlog .notBlog .posts {
+    display: block;
+    background: #bbbbbb;
+    padding: 12px 12px;
+    width: 160px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  .myBlog .notBlog .posts span {
+    animation: aniArrow 1s ease infinite;
+    display: inline-block;
+    transform: translateX(-5px);
+    margin-left: 5px;
+  }
+  .myBlog .notBlog .posts:hover {
+    background: #40474F;
+    color: white;
+  }
+  .myBlog .footer {
+    margin-top: 20px;
+  }
+  .blogTitle {
+    width: 100%;
+    text-align: center;
+  }
+  .blogTitle h1 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+}

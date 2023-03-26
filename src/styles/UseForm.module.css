@@ -38,3 +38,46 @@
 .useForm form .textareaWrap {
   min-height: 300px;
 }
+@media screen and (max-width: 768px) {
+  .useForm {
+    display: block;
+    padding-bottom: 20px;
+  }
+  .useForm form > div {
+    position: relative;
+    margin: 24px auto 0;
+    display: block;
+    width: 90%;
+  }
+  .useForm form > div input,
+  .useForm form > div textarea {
+    padding-left: 66px;
+  }
+  .useForm form > div textarea {
+    padding-top: 10px;
+    min-height: 300px;
+  }
+  .useForm form > div label {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    z-index: 1;
+    display: block;
+    width: 20px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: "";
+  }
+  .useForm form .inputWrap {
+    height: 60px;
+  }
+  .useForm form .textareaWrap {
+    min-height: 300px;
+  }
+  .useForm button {
+    margin: 0 auto;
+    width: 100%;
+  }
+}

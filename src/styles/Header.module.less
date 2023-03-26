@@ -31,6 +31,7 @@
     height: 100%;
 }
 .nav{
+
  ul{
   display: flex;
   align-items: center;
@@ -128,5 +129,45 @@
             transition: all 0.2s ease-in-out;
             background-color: #40474F;
         }
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .container{
+        position: relative;
+    }
+    .navMob{
+        width: 32px;
+        height: 32px;
+        span.navMobLogo{
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: url(../../public/images/navMob.svg) no-repeat center;
+            background-size: cover;
+        }
+        .navMobList{
+            position: absolute;
+            width: 100%;
+            padding: 20px 0;
+            left: 0;
+            margin-top: 24px;
+            background: white;
+            transition: all .3s ease;
+            transform: scaleY(0);
+            transform-origin: top;
+            box-shadow: 0 3px 6px rgb(0 0 0 / 10%);
+            ul{
+                li{
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        .navShow{
+            transform: scaleY(1);
+        }
+
     }
 }

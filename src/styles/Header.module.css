@@ -121,3 +121,38 @@
   transition: all 0.2s ease-in-out;
   background-color: #40474F;
 }
+@media screen and (max-width: 768px) {
+  .container {
+    position: relative;
+  }
+  .navMob {
+    width: 32px;
+    height: 32px;
+  }
+  .navMob span.navMobLogo {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url(../../public/images/navMob.svg) no-repeat center;
+    background-size: cover;
+  }
+  .navMob .navMobList {
+    position: absolute;
+    width: 100%;
+    padding: 20px 0;
+    left: 0;
+    margin-top: 24px;
+    background: white;
+    transition: all 0.3s ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  .navMob .navMobList ul li {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .navMob .navShow {
+    transform: scaleY(1);
+  }
+}

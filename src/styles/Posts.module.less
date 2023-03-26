@@ -3,7 +3,8 @@
     padding-top: 100px;
     height: 100vh;
     box-sizing: border-box;
-    background: rgba(250, 230, 249, 0.35);
+    background: #8b73ef30;
+    padding-bottom: 20px;
     h1{
         font-size: 24px;
         text-align: center;
@@ -72,4 +73,29 @@
     100%{
         transform: translateX(-5px);
     }
+}
+
+@media screen and (max-width:768px) {
+    .Posts{
+        padding-top: 120px;
+        h1{
+            font-size: 22px;
+            text-align: center;
+        }
+        h2{
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+    .postList{
+
+        margin-top: 20px;
+        div.link{
+            margin-bottom: 10px;
+        }
+        .fonts{
+            font-size: 16px;
+        }
+    }
+    
 }

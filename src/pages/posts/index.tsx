@@ -35,8 +35,8 @@ const PostsIndex: NextPage<Props> = (props) => {
                 <Link href={`/posts/${p.id}`}>
                   <div>
                     <p className={styles.fonts}>
-                      {p.title ? p.title : "没有标题"} ---------{" "}
-                      <span>(作者: {username})</span>
+                      {p.title ? p.title : "没有标题"}
+                      {/* <span>(作者: {username})</span> */}
                     </p>
                   </div>
                 </Link>

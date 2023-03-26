@@ -24,7 +24,9 @@ export const useSwiper = (num: number) => {
       <style jsx>{`
         .outer {
           width: 600px;
-          height: 300px;
+           {
+            /* height: 300px; */
+          }
           overflow: hidden;
         }
 
@@ -39,9 +41,17 @@ export const useSwiper = (num: number) => {
         }
         .inner img {
           width: 33.33%;
-          height: 300px;
+           {
+            /* height: 300px; */
+          }
           display: block;
           float: left;
+        }
+        @media screen and (max-width: 768px) {
+          .outer {
+            width: 90%;
+            margin-top: 50px;
+          }
         }
       `}</style>
 

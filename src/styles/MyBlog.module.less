@@ -106,3 +106,102 @@
         margin-top: 10px;
     }
 }
+@media screen and (max-width:768px) {
+    .myBlog{
+        padding-top: 100px;
+        .Posts{
+            padding-top: 100px;
+            height: 100vh;
+            box-sizing: border-box;
+            background: rgba(250, 230, 249, 0.35);
+            h1{
+                font-size: 20px;
+                text-align: center;
+            }
+            h2{
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+        .postList{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 50px;
+    
+            div.link{
+                margin-bottom: 20px;
+                border: 2px solid #40474F;
+                width: 98%;
+                border-radius: 10px;
+                padding: 10px;
+                .linkWrap{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .linkWrapBtn{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 20px;
+                        button{
+                            padding: 6px 14px;
+                            font-size: 13px;
+                            a{
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+            .fonts{
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+        
+                span{
+                    font-size: 12px;
+                }
+            }
+        }
+        .notBlog{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+            .posts{
+                display: block;
+                background: rgb(187,187,187);
+                padding: 12px 12px;
+                width: 160px;
+                text-align: center;
+                margin-top: 20px;
+                border-radius: 5px;
+                transition: all .3s ease;
+                span{
+                    animation: aniArrow 1s ease infinite;
+                    display: inline-block;
+                    transform: translateX(-5px);
+                    margin-left: 5px;
+                }
+                &:hover{
+                    background: #40474F;
+                    color: white;
+                }
+            }
+        }
+        .footer{
+            margin-top: 20px;
+        }
+    }
+    .blogTitle{
+        width: 100%;
+        text-align: center;
+        h1{
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    }
+}
