@@ -4,7 +4,11 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,10 +23,21 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/component/*": ["src/component/*"],
+      "@/*": [
+        "./src/*"
+      ],
+      "@/component/*": [
+        "./src/component/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/redux/features/userSlice.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/redux/features/userSlice.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
