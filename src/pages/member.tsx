@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import styles from "@/styles/Member.module.css";
+import styles from "../styles/Member.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
