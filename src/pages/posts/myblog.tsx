@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import styles from "@/styles/MyBlog.module.css";
+import styles from "../../styles/MyBlog.module.css";
 import Link from "next/link";
 import { withSessionSsr } from "../../../lib/withSession";
 import axios from "axios";

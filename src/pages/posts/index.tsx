@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { withSessionSsr } from "../../../lib/withSession";
 import _ from "lodash";
-import styles from "@/styles/Posts.module.css";
+import styles from "../../styles/Posts.module.css";
 import Head from "next/head";
 import { getDataSource } from "src/data-source";
 import { Post } from "src/entities/Post";

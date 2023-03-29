@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
 import { useRouter } from "next/router";
-import styles from "@/styles/NewPost.module.css";
+import styles from "../styles/NewPost.module.css";
 import Link from "next/link";
 import { useForm } from "src/hooks/useForm";
 import { getUserSure } from "src/redux/features/userSlice";

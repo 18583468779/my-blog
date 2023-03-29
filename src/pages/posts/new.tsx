@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextPage } from "next";
 import Link from "next/link";
-import styles from "@/styles/NewPost.module.css";
+import styles from "../../styles/NewPost.module.css";
 import { useState } from "react";
 import { useFloat } from "src/hooks/useFloat";
 import { useForm } from "src/hooks/useForm";

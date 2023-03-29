@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import styles from "@/styles/NewPost.module.css";
+import styles from "../styles/NewPost.module.css";
 import Link from "next/link";
 import { useForm } from "src/hooks/useForm";
 

@@ -36,8 +36,9 @@ const Member: NextPage = () => {
   });
 
   useEffect(() => {
-    if (!user.currentUser) router.push("/");
-  }, []);
+    console.log(user.currentUser);
+    // if (!user.currentUser) router.push("/");
+  }, [user]);
 
   useEffect(() => {
     if (!user.currentUser) return;

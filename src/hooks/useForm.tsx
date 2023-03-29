@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { FormEventHandler, ReactElement, useCallback, useState } from "react";
-import styles from "@/styles/UseForm.module.css";
+import styles from "../styles/UseForm.module.css";
 type Filed<T> = {
   label: string;
   placeholder: string;

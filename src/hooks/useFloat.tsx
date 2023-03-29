@@ -1,4 +1,4 @@
-import styles from "@/styles/UseFloat.module.css";
+import styles from "../styles/UseFloat.module.css";
 import { AxiosResponse } from "axios";
 import router from "next/router";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";

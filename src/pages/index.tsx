@@ -1,6 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
-import styles from "@/styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { useSwiper } from "src/hooks/useSwiper";
 

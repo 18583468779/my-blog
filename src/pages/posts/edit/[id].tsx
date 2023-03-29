@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "@/styles/NewPost.module.css";
+import styles from "../../../styles/NewPost.module.css";
 import { getDataSource } from "src/data-source";
 import { Post } from "src/entities/Post";
 import { User } from "src/entities/User";
