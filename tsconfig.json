@@ -35,7 +35,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/redux/features/userSlice.ts"
+    "src/redux/features/userSlice.ts",
+    "pages/**/*",
+    "src/**/*",
   ],
   "exclude": [
     "node_modules"
