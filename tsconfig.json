@@ -26,16 +26,13 @@
       "@/*": [
         "./src/*"
       ],
-      "@/component/*": [
-        "./src/component/*"
+      "@/Component/*": [
+        "src/Component/*"
       ]
     }
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/redux/features/userSlice.ts",
     "pages/**/*",
     "src/**/*",
   ],

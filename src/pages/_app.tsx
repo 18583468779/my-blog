@@ -1,4 +1,4 @@
-import Layout from "@/component/Layout";
+import Layout from "@/Component/Layout";
 import { store } from "@/redux/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
