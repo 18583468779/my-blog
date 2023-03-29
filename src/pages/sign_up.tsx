@@ -12,7 +12,7 @@ const SignUp: NextPage = () => {
     fields: [
       {
         label: "用户名",
-        placeholder: "请输入用户名*",
+        placeholder: "请输入用户名 *",
         name: "username",
         type: "text",
         key: "username",
@@ -20,7 +20,7 @@ const SignUp: NextPage = () => {
       },
       {
         label: "密码",
-        placeholder: "请输入密码*",
+        placeholder: "请输入密码 *",
         name: "password",
         type: "password",
         key: "password",
