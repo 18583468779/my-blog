@@ -3,12 +3,12 @@ import { NextPage } from "next";
 import { useState, useEffect } from "react";
 import { withSessionSsr } from "../../lib/withSession";
 import queryString from "query-string";
-import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
-import { getUserSure } from "@/redux/features/userSlice";
-import { useForm } from "@/hooks/useForm";
 import Link from "next/link";
+import { useForm } from "/hooks/useForm";
+import { getUserSure } from "/redux/features/userSlice";
+import { useAppDispatch } from "/redux/hooks";
 type Props = {
   user: {
     user: {

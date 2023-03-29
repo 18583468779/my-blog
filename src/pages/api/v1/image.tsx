@@ -4,8 +4,8 @@ import path from "path";
 import formidable from "formidable";
 import { cwd } from "process";
 import { withSessionRoute } from "../../../../lib/withSession";
-import { getDataSource } from "@/data-source";
-import { User } from "@/entities/User";
+import { getDataSource } from "/data-source";
+import { User } from "/entities/User";
 
 export const config = {
   api: {

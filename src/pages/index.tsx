@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NextPage } from "next";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import { useSwiper } from "@/hooks/useSwiper";
+import { useSwiper } from "/hooks/useSwiper";
 
 const Home: NextPage = (props) => {
   const { Swiper } = useSwiper(3);

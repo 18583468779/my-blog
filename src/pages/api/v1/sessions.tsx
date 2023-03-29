@@ -1,8 +1,8 @@
-import { getDataSource } from "@/data-source";
-import { User } from "@/entities/User";
 import md5 from "md5";
 import { NextApiHandler } from "next";
 import { withSessionRoute } from "../../../../lib/withSession";
+import { getDataSource } from "/data-source";
+import { User } from "/entities/User";
 
 const Sessions: NextApiHandler = async (req, res) => {
   const { username, password } = req.body;

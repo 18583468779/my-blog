@@ -1,7 +1,7 @@
-import { getDataSource } from "@/data-source";
-import { User } from "@/entities/User";
 import { NextApiHandler } from "next";
 import md5 from "md5";
+import { getDataSource } from "/data-source";
+import { User } from "/entities/User";
 const Users: NextApiHandler = async (req, res) => {
   const { username, password, passwordConfirm } = req.body;
 

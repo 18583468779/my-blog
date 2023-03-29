@@ -1,12 +1,11 @@
-import { useForm } from "@/hooks/useForm";
-import { useAppSelector } from "@/redux/hooks";
 import axios from "axios";
 import { NextPage } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
-import { useFloat } from "@/hooks/useFloat";
 import { useState } from "react";
+import { useFloat } from "/hooks/useFloat";
+import { useForm } from "/hooks/useForm";
+import { useAppSelector } from "/redux/hooks";
 
 const PostsNew: NextPage = () => {
   const user = useAppSelector((state) => state.currentUser);

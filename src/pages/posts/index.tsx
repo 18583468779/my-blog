@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import Link from "next/link";
-import { Post } from "@/entities/Post";
-import { getDataSource } from "@/data-source";
 import { withSessionSsr } from "../../../lib/withSession";
-import { User } from "@/entities/User";
 import _ from "lodash";
-import { usePager } from "@/hooks/userPager";
 import styles from "@/styles/Posts.module.css";
 import Head from "next/head";
+import { getDataSource } from "/data-source";
+import { Post } from "/entities/Post";
+import { User } from "/entities/User";
+import { usePager } from "/hooks/userPager";
 
 type Props = {
   posts: Post[];

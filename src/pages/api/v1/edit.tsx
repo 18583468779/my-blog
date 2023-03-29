@@ -1,9 +1,7 @@
-import { getDataSource } from "@/data-source";
-import { Post } from "@/entities/Post";
-import { User } from "@/entities/User";
-
 import { NextApiHandler } from "next";
 import { withSessionRoute } from "../../../../lib/withSession";
+import { getDataSource } from "/data-source";
+import { Post } from "/entities/Post";
 //判断用户是否登录
 const editPosts: NextApiHandler = withSessionRoute(async (req, res) => {
   const { title, content, id } = req.body;

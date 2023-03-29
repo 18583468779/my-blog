@@ -1,10 +1,9 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEventHandler, useEffect, useState } from "react";
 import styles from "@/styles/NewPost.module.css";
-import { useForm } from "@/hooks/useForm";
 import Link from "next/link";
+import { useForm } from "/hooks/useForm";
 const SignUp: NextPage = () => {
   const router = useRouter();
   const { form } = useForm({

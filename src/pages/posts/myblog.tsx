@@ -1,15 +1,15 @@
 import { NextPage } from "next";
 import styles from "@/styles/MyBlog.module.css";
-import { Post } from "@/entities/Post";
-import { usePager } from "@/hooks/userPager";
 import Link from "next/link";
-import { getDataSource } from "@/data-source";
-import { User } from "@/entities/User";
 import { withSessionSsr } from "../../../lib/withSession";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useFloat } from "@/hooks/useFloat";
 import { useState } from "react";
+import { getDataSource } from "/data-source";
+import { Post } from "/entities/Post";
+import { User } from "/entities/User";
+import { useFloat } from "/hooks/useFloat";
+import { usePager } from "/hooks/userPager";
 
 type Props = {
   posts: Post[];

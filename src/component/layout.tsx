@@ -1,10 +1,10 @@
-import { getUserSure } from "@/redux/features/userSlice";
-import { useAppDispatch } from "@/redux/hooks";
 import axios from "axios";
 import { NextPage } from "next";
 import Head from "next/head";
 import { ReactNode, useEffect, useState } from "react";
 import Header from "./Header";
+import { getUserSure } from "/redux/features/userSlice";
+import { useAppDispatch } from "/redux/hooks";
 
 type Props = {
   children: ReactNode;

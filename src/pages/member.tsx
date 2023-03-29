@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 import styles from "@/styles/Member.module.css";
-import { useAppSelector } from "@/redux/hooks";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useFloat } from "@/hooks/useFloat";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useFloat } from "/hooks/useFloat";
+import { useAppSelector } from "/redux/hooks";
 const Member: NextPage = () => {
   const router = useRouter();
   const user = useAppSelector((state) => state.currentUser);

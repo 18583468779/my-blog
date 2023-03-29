@@ -23,11 +23,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
+      "/*": [
         "./src/*"
       ],
-      "@/Component/*": [
-        "src/Component/*"
+      "/component/*": [
+        "src/component/*"
       ]
     }
   },

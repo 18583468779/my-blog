@@ -1,13 +1,14 @@
-import { useForm } from "@/hooks/useForm";
-import { useAppSelector } from "@/redux/hooks";
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
-import { getDataSource } from "@/data-source";
-import { Post } from "@/entities/Post";
-import { User } from "@/entities/User";
+import { getDataSource } from "/data-source";
+import { Post } from "/entities/Post";
+import { User } from "/entities/User";
+import { useForm } from "/hooks/useForm";
+import { useAppSelector } from "/redux/hooks";
+
 type Props = {
   post: Post;
   user: User;

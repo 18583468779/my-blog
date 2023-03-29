@@ -1,8 +1,8 @@
-import { getDataSource } from "@/data-source";
-import { Post } from "@/entities/Post";
-import { User } from "@/entities/User";
 import { NextPage, GetServerSideProps } from "next";
 import React from "react";
+import { getDataSource } from "/data-source";
+import { Post } from "/entities/Post";
+import { User } from "/entities/User";
 
 type Props = {
   post: Post;
