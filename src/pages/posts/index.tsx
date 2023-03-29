@@ -4,10 +4,10 @@ import { withSessionSsr } from "../../../lib/withSession";
 import _ from "lodash";
 import styles from "@/styles/Posts.module.css";
 import Head from "next/head";
-import { getDataSource } from "/data-source";
-import { Post } from "/entities/Post";
-import { User } from "/entities/User";
-import { usePager } from "/hooks/userPager";
+import { getDataSource } from "src/data-source";
+import { Post } from "src/entities/Post";
+import { User } from "src/entities/User";
+import { usePager } from "src/hooks/userPager";
 
 type Props = {
   posts: Post[];

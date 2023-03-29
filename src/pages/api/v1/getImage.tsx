@@ -1,7 +1,8 @@
 import { NextApiHandler } from "next";
+import { getDataSource } from "src/data-source";
+import { User } from "src/entities/User";
 import { withSessionRoute } from "../../../../lib/withSession";
-import { getDataSource } from "/data-source";
-import { User } from "/entities/User";
+
 //判断用户是否登录
 const getImage: NextApiHandler = withSessionRoute(async (req, res) => {
   if (req.method === "POST") {

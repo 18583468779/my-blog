@@ -6,9 +6,10 @@ import queryString from "query-string";
 import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
 import Link from "next/link";
-import { useForm } from "/hooks/useForm";
-import { getUserSure } from "/redux/features/userSlice";
-import { useAppDispatch } from "/redux/hooks";
+import { useForm } from "src/hooks/useForm";
+import { getUserSure } from "src/redux/features/userSlice";
+import { useAppDispatch } from "src/redux/hooks";
+
 type Props = {
   user: {
     user: {

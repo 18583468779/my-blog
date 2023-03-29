@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import { useSwiper } from "/hooks/useSwiper";
+import { useSwiper } from "src/hooks/useSwiper";
 
 const Home: NextPage = (props) => {
   const { Swiper } = useSwiper(3);

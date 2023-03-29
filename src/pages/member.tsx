@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useFloat } from "/hooks/useFloat";
-import { useAppSelector } from "/redux/hooks";
+import { useFloat } from "src/hooks/useFloat";
+import { useAppSelector } from "src/redux/hooks";
+
 const Member: NextPage = () => {
   const router = useRouter();
   const user = useAppSelector((state) => state.currentUser);

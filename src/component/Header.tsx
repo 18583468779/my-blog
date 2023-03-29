@@ -1,9 +1,8 @@
 import { NextPage } from "next";
 import styles from "@/styles/Header.module.css";
 import Link from "next/link";
-
 import { useState } from "react";
-import { useAppSelector } from "/redux/hooks";
+import { useAppSelector } from "src/redux/hooks";
 
 const Header: NextPage = (props) => {
   const users = useAppSelector((state) => state.currentUser);

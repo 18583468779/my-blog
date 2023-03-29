@@ -1,8 +1,8 @@
 import { NextApiHandler } from "next";
+import { getDataSource } from "src/data-source";
+import { Post } from "src/entities/Post";
+import { User } from "src/entities/User";
 import { withSessionRoute } from "../../../../lib/withSession";
-import { getDataSource } from "/data-source";
-import { Post } from "/entities/Post";
-import { User } from "/entities/User";
 
 const Posts: NextApiHandler = withSessionRoute(async (req, res) => {
   if (req.method === "POST") {

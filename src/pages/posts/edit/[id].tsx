@@ -3,11 +3,11 @@ import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
-import { getDataSource } from "/data-source";
-import { Post } from "/entities/Post";
-import { User } from "/entities/User";
-import { useForm } from "/hooks/useForm";
-import { useAppSelector } from "/redux/hooks";
+import { getDataSource } from "src/data-source";
+import { Post } from "src/entities/Post";
+import { User } from "src/entities/User";
+import { useForm } from "src/hooks/useForm";
+import { useAppSelector } from "src/redux/hooks";
 
 type Props = {
   post: Post;

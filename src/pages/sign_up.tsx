@@ -3,7 +3,8 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import styles from "@/styles/NewPost.module.css";
 import Link from "next/link";
-import { useForm } from "/hooks/useForm";
+import { useForm } from "src/hooks/useForm";
+
 const SignUp: NextPage = () => {
   const router = useRouter();
   const { form } = useForm({

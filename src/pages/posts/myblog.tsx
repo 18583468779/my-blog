@@ -5,11 +5,11 @@ import { withSessionSsr } from "../../../lib/withSession";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { getDataSource } from "/data-source";
-import { Post } from "/entities/Post";
-import { User } from "/entities/User";
-import { useFloat } from "/hooks/useFloat";
-import { usePager } from "/hooks/userPager";
+import { getDataSource } from "src/data-source";
+import { Post } from "src/entities/Post";
+import { User } from "src/entities/User";
+import { useFloat } from "src/hooks/useFloat";
+import { usePager } from "src/hooks/userPager";
 
 type Props = {
   posts: Post[];
