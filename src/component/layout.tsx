@@ -32,7 +32,7 @@ const Layout: NextPage<Props> = ({ children }) => {
     <>
       <Head>
         <title>谢的博客首页</title>
-        <meta name="description" content="谢文的博客" />
+        <meta name="description" content="谢文的博客,blog welcome to you!" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
