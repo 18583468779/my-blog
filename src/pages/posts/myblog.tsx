@@ -10,6 +10,7 @@ import { Post } from "src/entities/Post";
 import { User } from "src/entities/User";
 import { useFloat } from "src/hooks/useFloat";
 import { usePager } from "src/hooks/userPager";
+import { useAppSelector } from "src/redux/hooks";
 
 type Props = {
   posts: Post[];
@@ -21,7 +22,7 @@ type Props = {
 const Myblog: NextPage<Props> = (props) => {
   const { posts, page, totalPage } = props;
   const { pager } = usePager({ page, totalPage });
-
+  const user = useAppSelector((state) => state.currentUser);
   const router = useRouter();
   const handleDelete = (e: any, id: number) => {
     e.stopPropagation();
@@ -56,59 +57,89 @@ const Myblog: NextPage<Props> = (props) => {
   });
 
   return (
-    <div className={styles.myBlog}>
-      <div className={"container"}>
-        <div className={styles.blogTitle}>
-          <img src="/images/blog-logo.png" alt="blog-title" width={64} />
-          <h1>我的博客</h1>
-        </div>
-        <div className={styles.postList}>
-          {posts.length > 0 ? (
-            posts.map((p) => (
-              <div key={p.id} className={styles.link}>
-                <div
-                  className={styles.linkWrap}
-                  onClick={(e) => handleLink(e, p.id)}
-                >
-                  <div className={styles.fonts}>
-                    {p.title ? (
-                      <strong>
-                        {p.id}.{p.title}
-                      </strong>
-                    ) : (
-                      "没有标题"
-                    )}
-                  </div>
-                  <div className={styles.linkWrapBtn}>
-                    <button type="button" className="blue">
-                      <div onClick={(e) => handleEdit(e, p.id)}>编辑</div>
-                    </button>
-                    <button
-                      type="button"
-                      className="grey"
-                      onClick={(e) => handleDelete(e, p.id)}
+    <>
+      {user.currentUser ? (
+        <div className={styles.myBlog}>
+          <div className={"container"}>
+            <div className={styles.blogTitle}>
+              <img src="/images/blog-logo.png" alt="blog-title" width={64} />
+              <h1>我的博客</h1>
+            </div>
+            <div className={styles.postList}>
+              {posts.length > 0 ? (
+                posts.map((p) => (
+                  <div key={p.id} className={styles.link}>
+                    <div
+                      className={styles.linkWrap}
+                      onClick={(e) => handleLink(e, p.id)}
                     >
-                      删除
-                    </button>
+                      <div className={styles.fonts}>
+                        {p.title ? (
+                          <strong>
+                            {p.id}.{p.title}
+                          </strong>
+                        ) : (
+                          "没有标题"
+                        )}
+                      </div>
+                      <div className={styles.linkWrapBtn}>
+                        <button type="button" className="blue">
+                          <div onClick={(e) => handleEdit(e, p.id)}>编辑</div>
+                        </button>
+                        <button
+                          type="button"
+                          className="grey"
+                          onClick={(e) => handleDelete(e, p.id)}
+                        >
+                          删除
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className={styles.notBlog}>
+                  <div>没有博客，请发布新博客</div>
+                  <Link href={"/posts/new"} className={styles.posts}>
+                    发表博客 <span>{">>"}</span>
+                  </Link>
                 </div>
-              </div>
-            ))
-          ) : (
-            <div className={styles.notBlog}>
-              <div>没有博客，请发布新博客</div>
-              <Link href={"/posts/new"} className={styles.posts}>
-                发表博客 <span>{">>"}</span>
+              )}
+              <footer className={styles.footer}>
+                {posts.length > 0 ? pager : ""}
+              </footer>
+            </div>
+          </div>
+          {showQuit ? FloatUser : ""}
+        </div>
+      ) : (
+        <div className="container">
+          <style jsx>
+            {`
+              .noLogin {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                flex-direction: column;
+              }
+              h2 {
+                text-align: center;
+                font-size: 28px;
+              }
+            `}
+          </style>
+          <div className="noLogin">
+            <h2>您还没有进行登录</h2>
+            <div className={"btn"}>
+              <Link href={"/sign_in"}>
+                前往登录页面 <span>{">>"}</span>
               </Link>
             </div>
-          )}
-          <footer className={styles.footer}>
-            {posts.length > 0 ? pager : ""}
-          </footer>
+          </div>
         </div>
-      </div>
-      {showQuit ? FloatUser : ""}
-    </div>
+      )}
+    </>
   );
 };
 

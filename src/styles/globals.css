@@ -188,4 +188,11 @@ a.active::after{
     .mob{
         display: block !important;
     }
+    .btns{
+        position: relative;
+        margin: 24px auto 0;
+        display: block;
+        width: 100%;
+        height: 45px;
+    }
 }

@@ -75,7 +75,11 @@ const Header: NextPage = (props) => {
                   </h3>
                 </li>
               ) : (
-                <li className={styles.users} onClick={() => setNavMob(false)}>
+                <li
+                  className={styles.users}
+                  onClick={() => setNavMob(false)}
+                  style={{ margin: "0 auto" }}
+                >
                   <div>
                     <Link href={"/sign_in"}>登录</Link>
                   </div>
