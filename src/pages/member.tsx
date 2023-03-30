@@ -8,7 +8,6 @@ import { useFloat } from "src/hooks/useFloat";
 import { useAppSelector } from "src/redux/hooks";
 
 const Member: NextPage = () => {
-  const router = useRouter();
   const user = useAppSelector((state) => state.currentUser);
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
@@ -30,25 +29,21 @@ const Member: NextPage = () => {
     submit: {
       request: () => axios.post("/api/v1/quitUser", { ev: "quit" }),
       message: () => {
-        router.push("/");
+        // router.push("/");
+        window.location.href = "/";
       },
     },
   });
 
   useEffect(() => {
-    console.log(user.currentUser);
-    // if (!user.currentUser) router.push("/");
-  }, [user]);
-
-  useEffect(() => {
-    if (!user.currentUser) return;
+    // if (!user.currentUser) return;
     //get user picture
     axios.post("api/v1/getImage", { data: "get_user_picture" }).then((res) => {
       if ((res.status = 200)) {
         setGetImage(res.data.image);
       }
     });
-  }, [selectedImage, selectedFile, getImage]);
+  }, []);
 
   const handleUpload = async () => {
     setUploading(true);
@@ -84,6 +79,7 @@ const Member: NextPage = () => {
                   <img src={`images/user/${getImage}`} alt="picture" />
                 )}
               </dt>
+
               <dd>
                 <div className={styles.username}>
                   {user.username} <span>邮箱：暂无</span>

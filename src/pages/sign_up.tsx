@@ -4,9 +4,31 @@ import { useRouter } from "next/router";
 import styles from "../styles/NewPost.module.css";
 import Link from "next/link";
 import { useForm } from "src/hooks/useForm";
+import queryString from "query-string";
+import { useState } from "react";
+import { useFloat } from "src/hooks/useFloat";
+import { getUserSure } from "src/redux/features/userSlice";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
+
+  //控制float的var
+  const [showQuit, setShowQuit] = useState(false);
+
+  const handleShow = () => {
+    setShowQuit(true);
+  };
+
+  const { Float: FloatUser } = useFloat({
+    show: showQuit,
+    setShowQuit,
+    initData: { ev: "register" },
+    title: "注册成功！",
+    type: "message",
+    surePath: "/sign_in",
+    sureFn: () => {},
+  });
+
   const { form } = useForm({
     initFormData: { username: "", password: "", passwordConfirm: "" },
     fields: [
@@ -51,8 +73,7 @@ const SignUp: NextPage = () => {
     submit: {
       request: (formData) => axios.post("/api/v1/users", formData),
       message: () => {
-        window.alert("注册成功");
-        router.push("/sign_in");
+        handleShow();
       },
     },
   });
@@ -69,6 +90,7 @@ const SignUp: NextPage = () => {
         <h1>注册</h1>
       </div>
       <div>{form}</div>
+      {showQuit ? FloatUser : ""}
     </div>
   );
 };

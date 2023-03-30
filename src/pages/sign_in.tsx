@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useForm } from "src/hooks/useForm";
 import { getUserSure } from "src/redux/features/userSlice";
 import { useAppDispatch } from "src/redux/hooks";
+import { useFloat } from "src/hooks/useFloat";
 
 type Props = {
   user: {
@@ -31,6 +32,32 @@ const SignIn: NextPage<Props> = (props) => {
       router.push("/");
     }
   }, []);
+
+  //控制float的var
+  const [showQuit, setShowQuit] = useState(false);
+
+  const handleShow = () => {
+    setShowQuit(true);
+  };
+
+  const { Float: FloatUser } = useFloat({
+    show: showQuit,
+    setShowQuit,
+    initData: { ev: "login" },
+    title: "登录成功！",
+    type: "message",
+    sureFn: () => {
+      const query = queryString.parse(window.location.search);
+      if (query.return_to) {
+        window.location.href = query.return_to?.toString();
+      } else {
+        window.location.href = "/";
+      }
+      //将登录信息给store
+      const state = props.user;
+      dispatch(getUserSure(state));
+    },
+  });
 
   const { form } = useForm({
     initFormData: { username: "", password: "" },
@@ -68,18 +95,7 @@ const SignIn: NextPage<Props> = (props) => {
     submit: {
       request: (formData) => axios.post("/api/v1/sessions", formData),
       message: () => {
-        window.alert("登录成功");
-        const query = queryString.parse(window.location.search);
-        if (query.return_to) {
-          window.location.href = query.return_to?.toString();
-          // router.push(query.return_to?.toString());
-        } else {
-          window.location.href = "/";
-          // router.push("/");
-        }
-        //将登录信息给store
-        const state = props.user;
-        dispatch(getUserSure(state));
+        handleShow();
       },
     },
   });
@@ -96,6 +112,7 @@ const SignIn: NextPage<Props> = (props) => {
         <h1>登录</h1>
       </div>
       <div>{form}</div>
+      {showQuit ? FloatUser : ""}
     </div>
   );
 };

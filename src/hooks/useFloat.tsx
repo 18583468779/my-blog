@@ -26,14 +26,25 @@ export const useFloat = (options: useFloatInitData) => {
   const [aniShow, setAniShow] = useState(true); //控制弹窗向下滑出
 
   useEffect(() => {
-    setTimeout(() => {
-      setAniShow(false);
-    }, 1000);
-  }, [show, aniShow, setShowQuit]);
+    handleShowFloat().then(() => {
+      console.log("弹窗出现");
+    });
+  }, [show]);
+
+  const handleShowFloat = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(setAniShow(false));
+      }, 1000);
+    });
+  };
 
   const handleClose = () => {
     setShowQuit(false); //关闭弹窗
     setAniShow(true);
+    if (type === "message") {
+      sureFn();
+    }
   };
   const handleSubmit = () => {
     submit.request(initData).then(submit.message, (error) => {

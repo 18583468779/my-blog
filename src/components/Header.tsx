@@ -1,15 +1,20 @@
 import { NextPage } from "next";
 import styles from "../styles/Header.module.css";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "src/redux/hooks";
 
 const Header: NextPage = (props) => {
   const users = useAppSelector((state) => state.currentUser);
+  const [currUser, setCurrUser] = useState(users);
   const [navMob, setNavMob] = useState(false);
   const handleNavMob = () => {
     setNavMob((state) => (state = !state));
   };
+
+  useEffect(() => {
+    setCurrUser(users);
+  }, [users]);
   return (
     <header className={styles.header}>
       <div className={["container", styles.container].join(" ")}>
@@ -68,7 +73,7 @@ const Header: NextPage = (props) => {
               <li onClick={() => setNavMob(false)}>
                 <Link href={"/posts/myblog"}>我的博客</Link>
               </li>
-              {users.currentUser ? (
+              {currUser.currentUser ? (
                 <li onClick={() => setNavMob(false)}>
                   <h3>
                     <Link href={"/member"}> 用户：{users.username}</Link>
