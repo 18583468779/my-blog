@@ -1,1 +1,1 @@
-echo Hello > /tmp/xie
+echo Hello xie > /tmp/xie
