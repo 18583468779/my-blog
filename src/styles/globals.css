@@ -190,7 +190,7 @@ a.active::after{
     }
     .btns{
         position: relative;
-        margin: 24px auto 0;
+        margin: 22px auto 0;
         display: block;
         width: 100%;
         height: 45px;
