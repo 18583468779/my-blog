@@ -26,9 +26,12 @@ export const useFloat = (options: useFloatInitData) => {
   const [aniShow, setAniShow] = useState(true); //控制弹窗向下滑出
 
   useEffect(() => {
-    handleShowFloat().then(() => {
-      console.log("弹窗出现");
-    });
+    console.log("show", show);
+    if (show) {
+      handleShowFloat().then(() => {
+        console.log("弹窗出现");
+      });
+    }
   }, [show]);
 
   const handleShowFloat = () => {
