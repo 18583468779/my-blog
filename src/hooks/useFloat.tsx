@@ -26,7 +26,7 @@ export const useFloat = (options: useFloatInitData) => {
   const [aniShow, setAniShow] = useState(true); //控制弹窗向下滑出
 
   useEffect(() => {
-    console.log("show", show);
+    // console.log("show", show);
     if (show) {
       handleShowFloat().then(() => {
         console.log("弹窗出现");
@@ -38,7 +38,7 @@ export const useFloat = (options: useFloatInitData) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(setAniShow(false));
-      }, 1000);
+      }, 300);
     });
   };
 
@@ -75,7 +75,10 @@ export const useFloat = (options: useFloatInitData) => {
             <div className={styles.useFloatInfo}>
               <h2>{title}</h2>
               {type === "message" ? (
-                <div className={styles.useFloatBtn}>
+                <div
+                  className={styles.useFloatBtn}
+                  style={{ marginTop: "10px" }}
+                >
                   <button
                     type="button"
                     className={[styles.btn, "blue"].join(" ")}
@@ -85,7 +88,10 @@ export const useFloat = (options: useFloatInitData) => {
                   </button>
                 </div>
               ) : (
-                <div className={styles.useFloatBtn}>
+                <div
+                  className={styles.useFloatBtn}
+                  style={{ marginTop: "10px" }}
+                >
                   <button
                     type="button"
                     className={[styles.btn, "grey"].join(" ")}
