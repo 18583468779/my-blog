@@ -12,7 +12,7 @@ const Home: NextPage = (props) => {
       <div className="container">
         <div className={styles.banner}>
           <div className={styles.bannerLeft}>
-            <h1>欢迎来到xie的个人博客</h1>
+            <h1>欢迎来到xie wen的个人博客</h1>
             <div>
               <p>
                 创建一个博客。与世界分享你的故事。
